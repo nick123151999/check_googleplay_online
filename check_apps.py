@@ -1,6 +1,7 @@
 import os
 import urllib.request
 import urllib.parse
+import time
 from datetime import datetime, timedelta
 
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
@@ -20,14 +21,12 @@ def send_tg(msg):
         req = urllib.request.Request(url, data=urllib.parse.urlencode(data).encode("utf-8"), method="POST")
         with urllib.request.urlopen(req, timeout=10):
             pass
-    except Exception as e:
-        print("发送失败:", e)
+    except:
+        pass
 
 def check_ok(url):
     try:
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
+        headers = {"User-Agent": "Mozilla/5.0"}
         req = urllib.request.Request(url, headers=headers, method='GET')
         with urllib.request.urlopen(req, timeout=15) as f:
             return f.getcode() == 200
@@ -37,23 +36,21 @@ def check_ok(url):
             return False
         return True
 
-if __name__ == "__main__":
-    # 北京时间 UTC+8
+def run_check():
     now = (datetime.utcnow() + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
-    
     normal = []
     down = []
 
     for url in APP_LIST:
         try:
             if check_ok(url):
-                normal.append(url)  # 保存完整链接
+                normal.append(url)
             else:
-                down.append(url)    # 保存完整链接
+                down.append(url)
         except:
             continue
 
-    text_parts = [
+    text = "\n".join([
         "【谷歌应用定时巡检播报】",
         f"巡检时间：{now} (北京时间)",
         f"正常上架：{len(normal)} 个",
@@ -64,7 +61,13 @@ if __name__ == "__main__":
         "",
         "❌下架：",
         "\n".join(down) if down else "无"
-    ]
-    text = "\n".join(text_parts)
+    ])
     send_tg(text)
-    print("完成 ✅")
+    print("✅ 一次巡检完成")
+
+# 自带 5 分钟循环！永远自动跑！
+if __name__ == "__main__":
+    while True:
+        run_check()
+        print("⏱ 等待 5 分钟后继续...")
+        time.sleep(300)
