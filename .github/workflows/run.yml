@@ -1,7 +1,5 @@
 name: APP定时巡检
 on:
-  schedule:
-    - cron: "*/1 * * * *"
   workflow_dispatch:
 
 jobs:
