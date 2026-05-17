@@ -4,16 +4,19 @@ import urllib.parse
 import time
 from datetime import datetime, timedelta
 
+# 密钥配置（从GitHub Secrets读取）
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 CHAT_ID = os.getenv("TG_CHAT_ID")
 
+# 监控列表
 APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
     "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
     "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
-    # "https://play.google.com/store/apps/details?id=com.sz99.jiuqian.wallet",
+    "https://play.google.com/store/apps/details?id=com.sz99.jiuqian.wallet",
 ]
 
+# 发送TG消息
 def send_tg(msg):
     try:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
@@ -24,6 +27,7 @@ def send_tg(msg):
     except:
         pass
 
+# 检查APP是否在线
 def check_ok(url):
     try:
         headers = {"User-Agent": "Mozilla/5.0"}
@@ -36,6 +40,7 @@ def check_ok(url):
             return False
         return True
 
+# 执行一次巡检
 def run_check():
     now = (datetime.utcnow() + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
     normal = []
@@ -63,11 +68,13 @@ def run_check():
         "\n".join(down) if down else "无"
     ])
     send_tg(text)
-    print("✅ 一次巡检完成")
+    print("✅ 巡检完成")
 
-# 自带 5 分钟循环！永远自动跑！
+# ==========================================
+# 自动循环：每 1小时 执行一次（3600秒）
+# ==========================================
 if __name__ == "__main__":
     while True:
         run_check()
-        print("⏱ 等待 5 分钟后继续...")
-        time.sleep(300)
+        print("⏱ 等待 1 小时后再次检查...")
+        time.sleep(3600)  # 这里就是1小时
