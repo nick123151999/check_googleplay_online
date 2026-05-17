@@ -1,50 +1,67 @@
 import requests
 import os
 
-# 读取密钥
-BOT_TOKEN = os.getenv("8754776183:AAFKZrLrH4_tnB-lBghOePH5LErnIPWPTCo")
-CHAT_ID = os.getenv("361699392")
+# ========== 正确读取 GitHub 密钥（不要改这里！）==========
+BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
+CHAT_ID = os.getenv("TG_CHAT_ID")
 
-# ============在这里粘贴你所有APP链接============
+# ============ 你的APP列表 ============
 APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
     "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
     "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
-    # "https://play.google.com/store/apps/details?id=填写包名链接4",
-    # "https://play.google.com/store/apps/details?id=填写包名链接5"
-    # 继续往下粘贴满20个
 ]
-# ============================================
+# ======================================
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 11) Chrome/120.0.0.0 Mobile Safari/537.36"
 }
 
+# 发送 TG 消息
 def send_telegram(message):
-    api_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    data = {"chat_id": CHAT_ID, "text": message}
     try:
-        requests.post(api_url, json=data, timeout=10)
+        api_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+        payload = {
+            "chat_id": CHAT_ID,
+            "text": message,
+            "parse_mode": "Markdown"
+        }
+        requests.post(api_url, json=payload, timeout=15)
     except Exception as e:
-        print("发送TG消息失败", e)
+        print("发送失败:", e)
 
+# 检测 APP 是否在架
 def check_app_status(url):
     try:
-        res = requests.get(url, headers=HEADERS, timeout=15)
-        # 判定下架
-        if res.status_code != 200 or "Not Found" in res.text:
+        res = requests.get(
+            url,
+            headers=HEADERS,
+            timeout=20,
+            allow_redirects=True
+        )
+        # 真正下架才返回 False
+        if res.status_code in (404, 410, 403):
+            return False
+        if "Not Found" in res.text or "找不到" in res.text:
             return False
         return True
     except:
-        return False
+        return True  # 网络问题不算下架
 
+# 主程序
 if __name__ == "__main__":
-    abnormal = []
-    for app_url in APP_LIST:
-        if not check_app_status(app_url):
-            abnormal.append(app_url)
+    down_list = []
 
-    if abnormal:
-        tip = f"【APP下架告警】\n异常数量：{len(abnormal)} 个\n\n"
-        tip += "\n".join(abnormal)
-        send_telegram(tip)
+    for app in APP_LIST:
+        if not check_app_status(app):
+            down_list.append(app)
+
+    # 有下架才发消息
+    if down_list:
+        msg = "⚠️ *APP 下架告警*\n\n"
+        msg += f"异常数量：{len(down_list)}\n\n"
+        msg += "\n".join(down_list)
+        send_telegram(msg)
+        print("发送告警成功")
+    else:
+        print("✅ 全部APP正常")
