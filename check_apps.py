@@ -13,7 +13,8 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
     "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
     "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
-    "https://play.google.com/store/apps/details?id=com.sz99.jiuqian.wallet",
+    "https://play.google.com/store/apps/details?id=com.idolive.fishingwars",
+    "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang",
 ]
 
 # 发送TG消息
