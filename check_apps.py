@@ -16,7 +16,7 @@ APP_LIST = [
 STATE_FILE = "state.json"
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    "User-Agent": "Mozilla/5.0"
 }
 
 
@@ -26,31 +26,25 @@ def fetch(url):
         return r.read().decode("utf-8", errors="ignore").lower()
 
 
-def check_app(app_id):
-    url = f"https://play.google.com/store/apps/details?id={app_id}&hl=en"
-
+def check_app(app):
     try:
+        url = f"https://play.google.com/store/apps/details?id={app}&hl=en"
         html = fetch(url)
 
         if "item not found" in html:
             return False
         if "we're sorry" in html:
             return False
-        if "not available" in html:
-            return False
-
-        if "install" in html or "about this app" in html:
-            return True
 
         return True
 
     except:
-        # 网络问题不当作下架
         return True
 
 
 def send(msg):
     if not BOT_TOKEN or not CHAT_ID:
+        print("missing env")
         return
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
@@ -60,10 +54,7 @@ def send(msg):
         "text": msg
     }).encode()
 
-    try:
-        urllib.request.urlopen(urllib.request.Request(url, data=data), timeout=10)
-    except:
-        pass
+    urllib.request.urlopen(urllib.request.Request(url, data=data), timeout=10)
 
 
 def load_state():
@@ -90,12 +81,11 @@ if __name__ == "__main__":
         status = check_app(app)
         new[app] = status
 
-        if app in old:
-            if old[app] != status:
-                if status:
-                    up.append(app)
-                else:
-                    down.append(app)
+        if app in old and old[app] != status:
+            if status:
+                up.append(app)
+            else:
+                down.append(app)
 
     save_state(new)
 
