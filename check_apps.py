@@ -1,66 +1,113 @@
 import os
+import json
 import urllib.request
+import urllib.parse
 from datetime import datetime
 
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 CHAT_ID = os.getenv("TG_CHAT_ID")
 
 APP_LIST = [
-    "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
-    "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
-    "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
+    "com.todomaskj.toshhks2026",
+    "com.gamesters.gridora",
+    "com.tigerplinko.plinkogame",
 ]
 
-def send_tg(msg):
+STATE_FILE = "state.json"
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+}
+
+
+def fetch(url):
+    req = urllib.request.Request(url, headers=HEADERS)
+    with urllib.request.urlopen(req, timeout=15) as r:
+        return r.read().decode("utf-8", errors="ignore").lower()
+
+
+def check_app(app_id):
+    url = f"https://play.google.com/store/apps/details?id={app_id}&hl=en"
+
     try:
-        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-        data = f"chat_id={CHAT_ID}&text={msg}".encode("utf-8")
-        req = urllib.request.Request(url, data=data, method="POST")
-        with urllib.request.urlopen(req, timeout=10):
-            pass
+        html = fetch(url)
+
+        if "item not found" in html:
+            return False
+        if "we're sorry" in html:
+            return False
+        if "not available" in html:
+            return False
+
+        if "install" in html or "about this app" in html:
+            return True
+
+        return True
+
+    except:
+        # 网络问题不当作下架
+        return True
+
+
+def send(msg):
+    if not BOT_TOKEN or not CHAT_ID:
+        return
+
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+
+    data = urllib.parse.urlencode({
+        "chat_id": CHAT_ID,
+        "text": msg
+    }).encode()
+
+    try:
+        urllib.request.urlopen(urllib.request.Request(url, data=data), timeout=10)
     except:
         pass
 
-def check_ok(url):
-    try:
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
-        req = urllib.request.Request(url, headers=headers, method="GET")
-        
-        # 只获取状态码，不下载内容
-        with urllib.request.urlopen(req, timeout=15) as f:
-            code = f.getcode()
-            # 200 = 正常在线
-            return code == 200
-    except Exception as e:
-        # 404 / 410 = 应用已下架
-        if "404" in str(e) or "410" in str(e):
-            return False
-        # 其他错误 = 网络问题 → 不算下架
-        return True
+
+def load_state():
+    if os.path.exists(STATE_FILE):
+        return json.load(open(STATE_FILE))
+    return {}
+
+
+def save_state(s):
+    json.dump(s, open(STATE_FILE, "w"))
+
 
 if __name__ == "__main__":
+
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    normal = []
+
+    old = load_state()
+    new = {}
+
+    up = []
     down = []
 
-    for url in APP_LIST:
-        if check_ok(url):
-            normal.append(url.split("id=")[-1])
-        else:
-            down.append(url.split("id=")[-1])
+    for app in APP_LIST:
+        status = check_app(app)
+        new[app] = status
 
-    text = f"""【谷歌应用定时巡检播报】
-巡检时间：{now}
-正常上架应用：{len(normal)} 个
-已下架异常应用：{len(down)} 个
+        if app in old:
+            if old[app] != status:
+                if status:
+                    up.append(app)
+                else:
+                    down.append(app)
 
-✅正常列表：
-{"\n".join(normal) if normal else "无"}
+    save_state(new)
 
-❌下架列表：
-{"\n".join(down) if down else "暂无下架应用"}
-"""
-    send_tg(text)
-    print("完成 ✅")
+    if up or down:
+        msg = f"📊 Play监控更新\n时间: {now}\n\n"
+
+        if up:
+            msg += "🟢 上架:\n" + "\n".join(up) + "\n\n"
+
+        if down:
+            msg += "🔴 下架:\n" + "\n".join(down)
+
+        send(msg)
+
+    print("done")
