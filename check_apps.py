@@ -15,12 +15,13 @@ APP_LIST = [
 def send_tg(msg):
     try:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-        data = f"chat_id={CHAT_ID}&text={msg}".encode("utf-8")
-        req = urllib.request.Request(url, data=data, method="POST")
+        data = {"chat_id": CHAT_ID, "text": msg}
+        # 用 urllib 发送 POST 请求，避免f-string转义问题
+        req = urllib.request.Request(url, data=urllib.parse.urlencode(data).encode("utf-8"), method="POST")
         with urllib.request.urlopen(req, timeout=10):
             pass
-    except:
-        pass
+    except Exception as e:
+        print("发送失败:", e)
 
 def check_ok(url):
     try:
@@ -51,16 +52,19 @@ if __name__ == "__main__":
         except:
             continue
 
-    text = f"""【谷歌应用定时巡检播报】
-巡检时间：{now}
-正常上架：{len(normal)} 个
-已下架应用：{len(down)} 个
-
-✅正常：
-{"\n".join(normal) if normal else "无"}
-
-❌下架：
-{"\n".join(down) if down else "无"}
-"""
+    # 修复换行符问题，不用在f-string里写\n
+    text_parts = [
+        "【谷歌应用定时巡检播报】",
+        f"巡检时间：{now}",
+        f"正常上架：{len(normal)} 个",
+        f"已下架应用：{len(down)} 个",
+        "",
+        "✅正常：",
+        "\n".join(normal) if normal else "无",
+        "",
+        "❌下架：",
+        "\n".join(down) if down else "无"
+    ]
+    text = "\n".join(text_parts)
     send_tg(text)
     print("完成 ✅")
