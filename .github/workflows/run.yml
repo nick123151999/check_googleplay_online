@@ -1,19 +1,31 @@
-name: APP定时巡检
+name: monitor
+
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
 jobs:
-  run-check:
+  run:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-      - run: pip install requests
-      - name: 运行检测
+
+      - run: python main.py
+
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
-        run: python check_apps.py
-        
+
+      - name: save state
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@github.com"
+          git add state.json
+          git commit -m "update" || exit 0
+          git push
