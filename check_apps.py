@@ -1,6 +1,7 @@
 import os
 import urllib.request
-from datetime import datetime
+import urllib.parse
+from datetime import datetime, timedelta
 
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 CHAT_ID = os.getenv("TG_CHAT_ID")
@@ -16,7 +17,6 @@ def send_tg(msg):
     try:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
         data = {"chat_id": CHAT_ID, "text": msg}
-        # 用 urllib 发送 POST 请求，避免f-string转义问题
         req = urllib.request.Request(url, data=urllib.parse.urlencode(data).encode("utf-8"), method="POST")
         with urllib.request.urlopen(req, timeout=10):
             pass
@@ -38,24 +38,24 @@ def check_ok(url):
         return True
 
 if __name__ == "__main__":
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # 北京时间 UTC+8
+    now = (datetime.utcnow() + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
+    
     normal = []
     down = []
 
     for url in APP_LIST:
         try:
-            pkg = url.split("id=")[-1]
             if check_ok(url):
-                normal.append(pkg)
+                normal.append(url)  # 保存完整链接
             else:
-                down.append(pkg)
+                down.append(url)    # 保存完整链接
         except:
             continue
 
-    # 修复换行符问题，不用在f-string里写\n
     text_parts = [
         "【谷歌应用定时巡检播报】",
-        f"巡检时间：{now}",
+        f"巡检时间：{now} (北京时间)",
         f"正常上架：{len(normal)} 个",
         f"已下架应用：{len(down)} 个",
         "",
