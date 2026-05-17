@@ -1,103 +1,71 @@
 import os
-import json
 import urllib.request
-import urllib.parse
 from datetime import datetime
 
+# 配置
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 CHAT_ID = os.getenv("TG_CHAT_ID")
 
+# 你要监控的全部APP
 APP_LIST = [
-    "com.todomaskj.toshhks2026",
-    "com.gamesters.gridora",
-    "com.tigerplinko.plinkogame",
+    "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
+    "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
+    "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
+    "https://play.google.com/store/apps/details?id=com.sz99.jiuqian.wallet",
 ]
 
-STATE_FILE = "state.json"
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0"
-}
-
-
-def fetch(url):
-    req = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=15) as r:
-        return r.read().decode("utf-8", errors="ignore").lower()
-
-
-def check_app(app):
+# 发送TG消息
+def send_tg(msg):
     try:
-        url = f"https://play.google.com/store/apps/details?id={app}&hl=en"
-        html = fetch(url)
-
-        if "item not found" in html:
-            return False
-        if "we're sorry" in html:
-            return False
-
-        return True
-
+        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+        data = f"chat_id={CHAT_ID}&text={msg}".encode("utf-8")
+        req = urllib.request.Request(url, data=data, method="POST")
+        with urllib.request.urlopen(req, timeout=10):
+            pass
     except:
+        pass
+
+# ✅ 核心：真正准确的判断逻辑（只认404为下架）
+def check_ok(url):
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }
+        req = urllib.request.Request(url, headers=headers, method='GET')
+        with urllib.request.urlopen(req, timeout=15) as f:
+            return f.getcode() == 200
+    except Exception as e:
+        err = str(e)
+        # 只有明确 404 / 410 才是下架
+        if "404" in err or "410" in err:
+            return False
+        # 其他错误=网络问题 → 不算下架
         return True
 
-
-def send(msg):
-    if not BOT_TOKEN or not CHAT_ID:
-        print("missing env")
-        return
-
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-
-    data = urllib.parse.urlencode({
-        "chat_id": CHAT_ID,
-        "text": msg
-    }).encode()
-
-    urllib.request.urlopen(urllib.request.Request(url, data=data), timeout=10)
-
-
-def load_state():
-    if os.path.exists(STATE_FILE):
-        return json.load(open(STATE_FILE))
-    return {}
-
-
-def save_state(s):
-    json.dump(s, open(STATE_FILE, "w"))
-
-
+# 主程序
 if __name__ == "__main__":
-
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    old = load_state()
-    new = {}
-
-    up = []
+    normal = []
     down = []
 
-    for app in APP_LIST:
-        status = check_app(app)
-        new[app] = status
+    for url in APP_LIST:
+        pkg = url.split("id=")[-1]
+        if check_ok(url):
+            normal.append(pkg)
+        else:
+            down.append(pkg)
 
-        if app in old and old[app] != status:
-            if status:
-                up.append(app)
-            else:
-                down.append(app)
+    # 推送消息
+    text = f"""【谷歌应用定时巡检播报】
+巡检时间：{now}
+正常上架：{len(normal)} 个
+已下架应用：{len(down)} 个
 
-    save_state(new)
+✅正常：
+{"\n".join(normal) if normal else "无"}
 
-    if up or down:
-        msg = f"📊 Play监控更新\n时间: {now}\n\n"
-
-        if up:
-            msg += "🟢 上架:\n" + "\n".join(up) + "\n\n"
-
-        if down:
-            msg += "🔴 下架:\n" + "\n".join(down)
-
-        send(msg)
-
-    print("done")
+❌下架：
+{"\n".join(down) if down else "无"}
+"""
+    send_tg(text)
+    print("完成推送")
