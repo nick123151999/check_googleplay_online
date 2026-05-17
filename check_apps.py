@@ -1,17 +1,16 @@
 import requests
 import os
 
-# ========== 正确读取 GitHub 密钥（不要改这里！）==========
+# 读取密钥
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 CHAT_ID = os.getenv("TG_CHAT_ID")
 
-# ============ 你的APP列表 ============
+# 你的APP列表
 APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
     "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
     "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
 ]
-# ======================================
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 11) Chrome/120.0.0.0 Mobile Safari/537.36"
@@ -30,7 +29,7 @@ def send_telegram(message):
     except Exception as e:
         print("发送失败:", e)
 
-# 检测 APP 是否在架
+# 🔥 修复后的精准检测：只在真下架时报警
 def check_app_status(url):
     try:
         res = requests.get(
@@ -39,14 +38,19 @@ def check_app_status(url):
             timeout=20,
             allow_redirects=True
         )
-        # 真正下架才返回 False
-        if res.status_code in (404, 410, 403):
+
+        # 只有 404 / 页面找不到 才算真正下架
+        if res.status_code == 404:
             return False
-        if "Not Found" in res.text or "找不到" in res.text:
+        if "Not Found" in res.text or "此应用不存在" in res.text or "找不到应用" in res.text:
             return False
+
+        # 其他情况一律算正常（不会误报）
         return True
-    except:
-        return True  # 网络问题不算下架
+
+    except Exception:
+        # 网络错误、超时 → 不算下架
+        return True
 
 # 主程序
 if __name__ == "__main__":
@@ -56,7 +60,6 @@ if __name__ == "__main__":
         if not check_app_status(app):
             down_list.append(app)
 
-    # 有下架才发消息
     if down_list:
         msg = "⚠️ *APP 下架告警*\n\n"
         msg += f"异常数量：{len(down_list)}\n\n"
