@@ -48,7 +48,7 @@ if __name__ == "__main__":
             offline.append(link)
 
     content = "\n".join([
-        "【googleplay应用状态巡检】",
+        "【谷歌应用状态巡检】",
         f"巡检时间：{now_time} 北京时间",
         f"正常应用：{len(online)} 个",
         f"下架应用：{len(offline)} 个",
