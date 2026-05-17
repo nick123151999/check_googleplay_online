@@ -2,7 +2,7 @@ name: 公司1定时巡检
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/10 * * * *'
 jobs:
   run-task:
     runs-on: ubuntu-latest
