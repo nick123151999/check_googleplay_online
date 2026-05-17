@@ -1,18 +1,24 @@
 name: 公司1定时巡检
 on:
+  push:
   workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: "*/3 * * * *"
+
 jobs:
   run-task:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11
-      - name: 执行巡检
+          python-version: "3.11"
+
+      - name: Run Check
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID_COMP1: ${{ secrets.TG_CHAT_ID_COMP1 }}
