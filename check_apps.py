@@ -1,5 +1,5 @@
-import requests
 import os
+import urllib.request
 from datetime import datetime
 
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
@@ -11,25 +11,28 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
 ]
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Linux; Android 11) Chrome/120.0.0.0 Mobile Safari/537.36"
-}
-
 def send_tg(msg):
     try:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-        requests.post(url, json={"chat_id":CHAT_ID,"text":msg}, timeout=15)
+        data = f"chat_id={CHAT_ID}&text={msg}".encode("utf-8")
+        
+        req = urllib.request.Request(url, data=data, method="POST")
+        with urllib.request.urlopen(req, timeout=10):
+            pass
     except:
         pass
 
 def check_ok(url):
     try:
-        res = requests.get(url, headers=HEADERS, timeout=15)
-        if res.status_code == 404 or "Not Found" in res.text or "此应用不存在" in res.text:
-            return False
-        return True
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Mozilla/5.0"},
+            method="HEAD"
+        )
+        with urllib.request.urlopen(req, timeout=10):
+            return True
     except:
-        return True
+        return False
 
 if __name__ == "__main__":
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -48,10 +51,10 @@ if __name__ == "__main__":
 已下架异常应用：{len(down)} 个
 
 ✅正常列表：
-{chr(10).join(normal) if normal else "无"}
+{"\n".join(normal) if normal else "无"}
 
 ❌下架列表：
-{chr(10).join(down) if down else "暂无下架应用"}
+{"\n".join(down) if down else "暂无下架应用"}
 """
     send_tg(text)
-    print("本轮巡检完成，消息已推送")
+    print("完成")
