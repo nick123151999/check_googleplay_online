@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: "3.10"
 
-      - run: python main.py
+      - run: python check_apps.py
 
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
