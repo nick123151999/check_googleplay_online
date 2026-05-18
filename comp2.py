@@ -8,7 +8,10 @@ CHAT_ID = os.getenv("TG_CHAT_ID_COMP2")
 
 # 填写公司2谷歌商店完整链接
 APP_LIST = [
-    "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame"
+     "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
+    "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
+    "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
+    "https://play.google.com/store/apps/details?id=com.idolive.fishingwars",
 ]
 
 def send_tg(msg):
