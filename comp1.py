@@ -12,7 +12,7 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
     "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
     "https://play.google.com/store/apps/details?id=com.idolive.fishingwars",
-    # "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang",
+    "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang",
 ]
 
 def send_tg(msg):
