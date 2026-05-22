@@ -24,7 +24,6 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.NimbusDash.hks",
     "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel",
     "https://play.google.com/store/apps/details?id=com.icefallrescue.app",
-    "https://play.google.com/store/apps/details?id=com.tigerball.balldestory",
     "https://play.google.com/store/apps/details?id=com.plinkogame.tigerplinko",
     "https://play.google.com/store/apps/details?id=com.foxgamec.foxgames2026",
     "https://play.google.com/store/apps/details?id=com.magicgames.rabbit",
