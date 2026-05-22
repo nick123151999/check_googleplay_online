@@ -8,11 +8,32 @@ CHAT_ID = os.getenv("TG_CHAT_ID_COMP1")
 
 # 填写公司1谷歌商店完整链接
 APP_LIST = [
-    "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
-    "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
-    "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
+    "https://play.google.com/store/apps/details?id=com.game78.fishgoo",
+    "https://play.google.com/store/apps/details?id=com.khalidy.fortunecatch",
     "https://play.google.com/store/apps/details?id=com.idolive.fishingwars",
+    "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
     "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang",
+    "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
+    "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
+    "https://play.google.com/store/apps/details?id=com.maxminder2.feedbackhub",
+    "https://play.google.com/store/apps/details?id=com.maxminder1.helixflow",
+    "https://play.google.com/store/apps/details?id=com.tigerfruite.match2",
+    "https://play.google.com/store/apps/details?id=com.vikas.kaifeducation",
+    "https://play.google.com/store/apps/details?id=com.rabbitsgame.slotsgogo2026",
+    "https://play.google.com/store/apps/details?id=com.tigeranddragon.doocosj2026",
+    "https://play.google.com/store/apps/details?id=com.NimbusDash.hks",
+    "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel",
+    "https://play.google.com/store/apps/details?id=com.icefallrescue.app",
+    "https://play.google.com/store/apps/details?id=com.tigerball.balldestory",
+    "https://play.google.com/store/apps/details?id=com.plinkogame.tigerplinko",
+    "https://play.google.com/store/apps/details?id=com.foxgamec.foxgames2026",
+    "https://play.google.com/store/apps/details?id=com.magicgames.rabbit",
+    "https://play.google.com/store/apps/details?id=com.rabbitstory.discovery2026",
+    "https://play.google.com/store/apps/details?id=com.pandagame.pandamatch3",
+    "https://play.google.com/store/apps/details?id=com.majiangganme.majiang",
+    "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001",
+    "https://play.google.com/store/apps/details?id=com.pandagame.majiang002",
+    "https://play.google.com/store/apps/details?id=com.pandangame.majiangtooo003"
 ]
 
 def send_tg(msg):
