@@ -4,17 +4,17 @@ import urllib.parse
 import time
 from datetime import datetime, timedelta
 
-# 密钥配置（从GitHub Secrets读取）
+# 密钥配置
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 CHAT_ID = os.getenv("TG_CHAT_ID")
 
-# 监控列表
+# 手动填写渠道标识+链接，自行修改前缀编号
 APP_LIST = [
-    "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
-    "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
-    "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
-    # "https://play.google.com/store/apps/details?id=com.idolive.fishingwars",
-    "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang",
+    ("hwpg_1394", "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026"),
+    ("hwpg_1395", "https://play.google.com/store/apps/details?id=com.gamesters.gridora"),
+    ("hwpg_1396", "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame"),
+    # ("渠道04", "https://play.google.com/store/apps/details?id=com.idolive.fishingwars"),
+    ("hwpg_1398", "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang"),
 ]
 
 # 发送TG消息
@@ -28,7 +28,7 @@ def send_tg(msg):
     except:
         pass
 
-# 检查APP是否在线
+# 检查APP状态
 def check_ok(url):
     try:
         headers = {"User-Agent": "Mozilla/5.0"}
@@ -41,18 +41,19 @@ def check_ok(url):
             return False
         return True
 
-# 执行一次巡检
+# 巡检逻辑
 def run_check():
     now = (datetime.utcnow() + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
     normal = []
     down = []
 
-    for url in APP_LIST:
+    for tag, url in APP_LIST:
         try:
+            content = f"{tag}：{url}"
             if check_ok(url):
-                normal.append(url)
+                normal.append(content)
             else:
-                down.append(url)
+                down.append(content)
         except:
             continue
 
@@ -71,11 +72,8 @@ def run_check():
     send_tg(text)
     print("✅ 巡检完成")
 
-# ==========================================
-# 自动循环：每 1小时 执行一次（3600秒）
-# ==========================================
 if __name__ == "__main__":
     while True:
         run_check()
         print("⏱ 等待 1 小时后再次检查...")
-        time.sleep(3600)  # 这里就是1小时
+        time.sleep(3600)
