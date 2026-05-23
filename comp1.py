@@ -33,6 +33,8 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001",
     "https://play.google.com/store/apps/details?id=com.pandagame.majiang002",
     "https://play.google.com/store/apps/details?id=com.pandangame.majiangtooo003"
+    "https://play.google.com/store/apps/details?id=com.pandamajiang.majiang004"
+    "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005"
 ]
 
 def send_tg(msg):
