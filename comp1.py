@@ -8,7 +8,7 @@ CHAT_ID = os.getenv("TG_CHAT_ID_COMP1")
 
 # 填写公司1谷歌商店完整链接
 APP_LIST = [
-     "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005",
+    "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001",
     "https://play.google.com/store/apps/details?id=com.game78.fishgoo",
     "https://play.google.com/store/apps/details?id=com.khalidy.fortunecatch",
     "https://play.google.com/store/apps/details?id=com.idolive.fishingwars",
@@ -31,11 +31,11 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.rabbitstory.discovery2026",
     "https://play.google.com/store/apps/details?id=com.pandagame.pandamatch3",
     "https://play.google.com/store/apps/details?id=com.majiangganme.majiang",
-    "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001",
+
     "https://play.google.com/store/apps/details?id=com.pandagame.majiang002",
     "https://play.google.com/store/apps/details?id=com.pandangame.majiangtooo003",
     "https://play.google.com/store/apps/details?id=com.pandamajiang.majiang004",
-   
+    "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005",
 ]
 
 def send_tg(msg):
