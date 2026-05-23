@@ -79,7 +79,7 @@ if __name__ == "__main__":
         "✅ 正常链接：",
         "\n".join(online) if online else "无",
         "",
-        "❌ 下架链接：",
+        "❌ 离线链接：",
         "\n".join(offline) if offline else "无"
     ])
     send_tg(content)
