@@ -13,8 +13,9 @@ APP_LIST = [
     ("hwpg_1394", "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026"),
     ("hwpg_1395", "https://play.google.com/store/apps/details?id=com.gamesters.gridora"),
     ("hwpg_1396", "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame"),
-    # ("渠道04", "https://play.google.com/store/apps/details?id=com.idolive.fishingwars"),
     ("hwpg_1398", "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang"),
+    ("hwpg_1399", "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001"),
+    
 ]
 
 # 发送TG消息
