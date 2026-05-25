@@ -36,6 +36,12 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.pandangame.majiangtooo003",
     "https://play.google.com/store/apps/details?id=com.pandamajiang.majiang004",
     "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005",
+
+    "https://play.google.com/store/apps/details?id=com.nafay.drift",
+    "https://play.google.com/store/apps/details?id=com.nafay.brain",
+    "https://play.google.com/store/apps/details?id=com.cube.firstdream",
+    "https://play.google.com/store/apps/details?id=com.playwe.gaip",
+    "https://play.google.com/store/apps/details?id=com.stack.mansion",
 ]
 
 def send_tg(msg):
