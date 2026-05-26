@@ -1,4 +1,4 @@
-name: 公司2定时巡检
+name: tonny定时巡检
 on:
   workflow_dispatch:
   schedule:
@@ -28,4 +28,4 @@ jobs:
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID_COMP2 }}
-        run: python comp2.py
+        run: python tony.py
