@@ -1,31 +1,25 @@
-name: Tony定时巡检
+name: tony账户定时巡检
 on:
+  push:
   workflow_dispatch:
   schedule:
-    - cron: '0 */2 * * *'
+    - cron: "*/3 * * * *"
 
 jobs:
-  run-inspection:
+  run-task:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: 拉取代码
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 设置 Python 3.11
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: 安装依赖（如果有 requirements.txt）
-        run: |
-          if [ -f requirements.txt ]; then
-            pip install --upgrade pip
-            pip install -r requirements.txt
-          fi
-
-      - name: 执行巡检脚本
+      - name: Run Check
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID_COMP2 }}
+          TG_CHAT_ID_COMP1: ${{ secrets.TG_CHAT_ID_COMP1 }}
         run: python tony.py
