@@ -1,4 +1,4 @@
-name: 公司1定时巡检
+name: 我的账户定时巡检
 on:
   push:
   workflow_dispatch:
