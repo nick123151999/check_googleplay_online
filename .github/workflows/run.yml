@@ -1,4 +1,4 @@
-name: APP定时巡检
+name: 大户账号巡检
 on:
   workflow_dispatch:
 
