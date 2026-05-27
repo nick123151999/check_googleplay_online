@@ -1,55 +1,46 @@
 import os
-import urllib.request
-import urllib.parse
+import requests
 from datetime import datetime, timedelta
 
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
-CHAT_ID = os.getenv("TG_CHAT_ID_LIN")
-
-print("=== 调试信息 ===")
-print("BOT_TOKEN 存在:", bool(BOT_TOKEN))
-print("CHAT_ID    存在:", bool(CHAT_ID))
-print("CHAT_ID 值:", repr(CHAT_ID))
+# 多个群 ID 用英文逗号分隔
+CHAT_IDS_RAW = os.getenv("TG_CHAT_IDS_LIN", "TG_CHAT_IDS_LIN2")
+CHAT_IDS = [cid.strip() for cid in CHAT_IDS_RAW.split(",") if cid.strip()]
 
 APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel",
 ]
 
-def send_tg(msg):
-    if not BOT_TOKEN or not CHAT_ID:
-        print("❌ 缺少环境变量，无法发送")
+def send_tg_all(msg):
+    if not BOT_TOKEN or not CHAT_IDS:
+        print("❌ 缺少 Token 或群 ID")
         return
-    try:
-        api = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-        data = urllib.parse.urlencode({
-            "chat_id": CHAT_ID,
-            "text": msg
-        }).encode("utf-8")
-        req = urllib.request.Request(api, data=data, method="POST")
-        with urllib.request.urlopen(req, timeout=15) as res:
-            print("✅ TG 返回码:", res.getcode())
-    except Exception as e:
-        print("❌ TG 发送异常:", str(e))
+    api_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+    for cid in CHAT_IDS:
+        payload = {
+            "chat_id": cid,
+            "text": msg,
+            "disable_web_page_preview": True
+        }
+        try:
+            r = requests.post(api_url, json=payload, timeout=15)
+            print(f"→ 发往 {cid}：HTTP {r.status_code}")
+            r.raise_for_status()
+        except Exception as e:
+            print(f"❌ 发往 {cid} 失败：{e}")
 
 def check_link(url):
     try:
-        headers = {"User-Agent": "Mozilla/5.0"}
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=15) as res:
-            return res.getcode() == 200
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+        return r.status_code == 200
     except Exception as e:
-        print("⚠️ 链接异常:", url, str(e))
+        print("⚠️ 链接检查失败：", url, e)
         return False
 
 if __name__ == "__main__":
     now = (datetime.utcnow() + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
-    online = []
-    offline = []
-    for link in APP_LIST:
-        if check_link(link):
-            online.append(link)
-        else:
-            offline.append(link)
+    online = [link for link in APP_LIST if check_link(link)]
+    offline = [link for link in APP_LIST if not check_link(link)]
 
     content = "\n".join([
         "【谷歌应用状态巡检】",
@@ -63,5 +54,5 @@ if __name__ == "__main__":
         "❌ 离线链接：",
         "\n".join(offline) if offline else "无"
     ])
-    print("准备发送内容：\n", content)
-    send_tg(content)
+    print("准备发送：\n", content)
+    send_tg_all(content)
