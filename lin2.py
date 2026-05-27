@@ -5,7 +5,7 @@ import urllib.parse
 from datetime import datetime, timedelta
 
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
-CHAT_ID = os.getenv("TG_CHAT_ID_COMP2")
+CHAT_ID = os.getenv("TG_CHAT_ID_LIN")
 
 # 填写公司1谷歌商店完整链接
 APP_LIST = [
