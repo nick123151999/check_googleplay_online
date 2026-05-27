@@ -1,4 +1,4 @@
-name: tony账户定时巡检
+name: lin账户定时巡检
 on:
   push:
   workflow_dispatch:
@@ -22,4 +22,4 @@ jobs:
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID_COMP1: ${{ secrets.TG_CHAT_ID_COMP1 }}
-        run: python tony.py
+        run: python linlinlin.py
