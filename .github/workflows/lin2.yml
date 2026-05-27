@@ -1,1 +1,30 @@
 
+name: lin的账户定时巡检
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+# 👇 加上这个，Node.js 24 强制启用，警告彻底消失
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run Check
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID_COMP1: ${{ secrets.TG_CHAT_ID_COMP1 }}
+        run: python lin2.py
