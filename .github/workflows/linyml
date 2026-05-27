@@ -22,4 +22,4 @@ jobs:
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID_COMP1: ${{ secrets.TG_CHAT_ID_COMP1 }}
-        run: python linlinlin.py
+        run: python lin.py
