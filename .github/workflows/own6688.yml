@@ -3,7 +3,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/55 * * * *"
 
 # 👇 加上这个，Node.js 24 强制启用，警告彻底消失
 env:
