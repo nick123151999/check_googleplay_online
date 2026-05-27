@@ -1,12 +1,11 @@
-
 name: lin的账户定时巡检
+
 on:
   push:
   workflow_dispatch:
   schedule:
     - cron: "*/3 * * * *"
 
-# 👇 加上这个，Node.js 24 强制启用，警告彻底消失
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
