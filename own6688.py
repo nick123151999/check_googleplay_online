@@ -36,6 +36,7 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.pandangame.majiangtooo003",
     "https://play.google.com/store/apps/details?id=com.pandamajiang.majiang004",
     "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005",
+    "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame006",
     
     "https://play.google.com/store/apps/details?id=pak.al.nasir.bugzy.tap.hunting",
     "https://play.google.com/store/apps/details?id=com.nafay.drift",
