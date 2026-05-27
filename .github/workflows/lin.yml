@@ -1,9 +1,13 @@
-name: lin的账户定时巡检
+name: 我的账户定时巡检
 on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/3 * * * *"
+
+# 👇 加上这个，Node.js 24 强制启用，警告彻底消失
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   run-task:
@@ -22,4 +26,4 @@ jobs:
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID_COMP1: ${{ secrets.TG_CHAT_ID_COMP1 }}
-        run: python lin.py
+        run: python own6688.py
