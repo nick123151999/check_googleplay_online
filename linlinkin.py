@@ -6,12 +6,10 @@ from datetime import datetime, timedelta
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 CHAT_ID = os.getenv("TG_CHAT_ID_COMP2")
 
-# 填写公司2谷歌商店完整链接
+# 填写公司1谷歌商店完整链接
 APP_LIST = [
-     "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
-    "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
-    "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
-    # "https://play.google.com/store/apps/details?id=com.idolive.fishingwars",
+    "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel",
+
 ]
 
 def send_tg(msg):
@@ -47,15 +45,15 @@ if __name__ == "__main__":
             offline.append(link)
 
     content = "\n".join([
-        "【googleplay应用状态巡检】",
+        "【谷歌应用状态巡检】",
         f"巡检时间：{now_time} 北京时间",
         f"正常应用：{len(online)} 个",
-        f"下架应用：{len(offline)} 个",
+        f"离线应用：{len(offline)} 个",
         "",
         "✅ 正常链接：",
         "\n".join(online) if online else "无",
         "",
-        "❌ 下架链接：",
+        "❌ 离线链接：",
         "\n".join(offline) if offline else "无"
     ])
     send_tg(content)
