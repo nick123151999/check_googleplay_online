@@ -1,5 +1,4 @@
 name: lin的账户定时巡检
-
 on:
   push:
   workflow_dispatch:
@@ -25,5 +24,7 @@ jobs:
       - name: Run Check
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_CHAT_ID_LIN: ${{ secrets.TG_CHAT_ID_LIN }}
-        run: python lin2.py
+          TG_CHAT_IDS_LIN: ${{ secrets.TG_CHAT_IDS_LIN }}
+        run: |
+          pip install requests
+          python lin2.py
