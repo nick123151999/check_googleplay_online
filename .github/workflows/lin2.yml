@@ -26,5 +26,5 @@ jobs:
       - name: Run Check
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_CHAT_ID_COMP1: ${{ secrets.TG_CHAT_ID_COMP1 }}
+          TG_CHAT_ID_COMP1: ${{ secrets.TG_CHAT_ID_COMP2 }}
         run: python lin2.py
