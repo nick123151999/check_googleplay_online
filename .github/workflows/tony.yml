@@ -1,9 +1,9 @@
-name: lin账户定时巡检
+name: lin的账户定时巡检
 on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: "*/3 * * * *"
+    - cron: "*/30 * * * *"
 
 jobs:
   run-task:
