@@ -19,7 +19,7 @@ def send_tg(msg):
             data = {
                 "chat_id": chat_id,
                 "text": msg,
-                "disable_web_page_preview": True
+                # "disable_web_page_preview": True
             }
             r = requests.post(url, json=data, timeout=10)
             print(f"✅ 发送到 {chat_id} 结果: {r.status_code}")
