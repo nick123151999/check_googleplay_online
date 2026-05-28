@@ -1,6 +1,8 @@
 name: 大户账号巡检
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # 允许手动运行
+  schedule:
+    - cron: "0 * * * *"  # 每小时执行一次
 
 jobs:
   check-apps:
