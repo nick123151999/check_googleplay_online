@@ -5,16 +5,15 @@ from datetime import datetime, timedelta
 
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 
-# ===================== 多群配置（一个参数一个群） =====================
-CHAT_IDS = [
-    os.getenv("TG_CHAT_ID_COMP1"),  # 群1
-    # os.getenv("TG_CHAT_ID_COMP2"),  # 群2
-    # os.getenv("TG_CHAT_ID_COMP3"),  # 群3（以后加群就加这行）
-    # os.getenv("TG_CHAT_ID_COMP4"),  # 群4
-]
-# 自动过滤空的，不影响使用
-CHAT_IDS = [cid for cid in CHAT_IDS if cid and cid.strip()]
-# ======================================================================
+# 读取并解析群ID，兼容：单个ID / 多个ID(英文逗号分隔)
+def get_chat_ids(var_name):
+    raw = os.getenv(var_name, "")
+    return [cid.strip() for cid in raw.split(",") if cid.strip()]
+
+# 加载所有群ID
+CHAT_IDS = []
+CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_COMP1"))
+# CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_COMP2"))
 
 # 格式：(渠道编号, 谷歌商店链接)
 APP_LIST = [
@@ -54,7 +53,7 @@ APP_LIST = [
     ("gp_034", "https://play.google.com/store/apps/details?id=com.stack.mansion"),
 ]
 
-# 发送到所有群
+# 发送消息
 def send_tg(msg):
     for chat_id in CHAT_IDS:
         try:
