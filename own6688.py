@@ -4,7 +4,17 @@ import urllib.parse
 from datetime import datetime, timedelta
 
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
-CHAT_ID = os.getenv("TG_CHAT_ID_COMP1")
+
+# ===================== 多群配置（一个参数一个群） =====================
+CHAT_IDS = [
+    os.getenv("TG_CHAT_ID_COMP1"),  # 群1
+    # os.getenv("TG_CHAT_ID_COMP2"),  # 群2
+    # os.getenv("TG_CHAT_ID_COMP3"),  # 群3（以后加群就加这行）
+    # os.getenv("TG_CHAT_ID_COMP4"),  # 群4
+]
+# 自动过滤空的，不影响使用
+CHAT_IDS = [cid for cid in CHAT_IDS if cid and cid.strip()]
+# ======================================================================
 
 # 格式：(渠道编号, 谷歌商店链接)
 APP_LIST = [
@@ -44,15 +54,17 @@ APP_LIST = [
     ("gp_034", "https://play.google.com/store/apps/details?id=com.stack.mansion"),
 ]
 
+# 发送到所有群
 def send_tg(msg):
-    try:
-        api = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-        post_data = urllib.parse.urlencode({"chat_id":CHAT_ID,"text":msg}).encode("utf-8")
-        req = urllib.request.Request(api, data=post_data, method="POST")
-        with urllib.request.urlopen(req, timeout=10):
+    for chat_id in CHAT_IDS:
+        try:
+            api = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+            post_data = urllib.parse.urlencode({"chat_id": chat_id, "text": msg}).encode("utf-8")
+            req = urllib.request.Request(api, data=post_data, method="POST")
+            with urllib.request.urlopen(req, timeout=10):
+                pass
+        except:
             pass
-    except:
-        pass
 
 def check_link(url):
     try:
@@ -71,7 +83,6 @@ if __name__ == "__main__":
     online = []
     offline = []
 
-    # 遍历：序号 + 渠道号 + 链接
     for idx, (channel_tag, link) in enumerate(APP_LIST, 1):
         try:
             content = f"{idx}. {channel_tag}  {link}"
