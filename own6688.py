@@ -6,44 +6,42 @@ from datetime import datetime, timedelta
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 CHAT_ID = os.getenv("TG_CHAT_ID_COMP1")
 
-# 填写公司1谷歌商店完整链接
+# 格式：(渠道编号, 谷歌商店链接)
 APP_LIST = [
-    "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001",
-    "https://play.google.com/store/apps/details?id=com.game78.fishgoo",
-    "https://play.google.com/store/apps/details?id=com.khalidy.fortunecatch",
-    "https://play.google.com/store/apps/details?id=com.idolive.fishingwars",
-    "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
-    "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang",
-    # "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
-    "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
-    "https://play.google.com/store/apps/details?id=com.maxminder2.feedbackhub",
-    "https://play.google.com/store/apps/details?id=com.maxminder1.helixflow",
-    "https://play.google.com/store/apps/details?id=com.tigerfruite.match2",
-    "https://play.google.com/store/apps/details?id=com.vikas.kaifeducation",
-    "https://play.google.com/store/apps/details?id=com.rabbitsgame.slotsgogo2026",
-    "https://play.google.com/store/apps/details?id=com.tigeranddragon.doocosj2026",
-    "https://play.google.com/store/apps/details?id=com.NimbusDash.hks",
-    "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel",
-    "https://play.google.com/store/apps/details?id=com.icefallrescue.app",
-    "https://play.google.com/store/apps/details?id=com.plinkogame.tigerplinko",
-    "https://play.google.com/store/apps/details?id=com.foxgamec.foxgames2026",
-    "https://play.google.com/store/apps/details?id=com.magicgames.rabbit",
-    "https://play.google.com/store/apps/details?id=com.rabbitstory.discovery2026",
-    "https://play.google.com/store/apps/details?id=com.pandagame.pandamatch3",
-    "https://play.google.com/store/apps/details?id=com.majiangganme.majiang",
-
-    "https://play.google.com/store/apps/details?id=com.pandagame.majiang002",
-    "https://play.google.com/store/apps/details?id=com.pandangame.majiangtooo003",
-    "https://play.google.com/store/apps/details?id=com.pandamajiang.majiang004",
-    "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005",
-    "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame006",
-    
-    "https://play.google.com/store/apps/details?id=pak.al.nasir.bugzy.tap.hunting",
-    "https://play.google.com/store/apps/details?id=com.nafay.drift",
-    "https://play.google.com/store/apps/details?id=com.nafay.brain",
-    "https://play.google.com/store/apps/details?id=com.cube.firstdream",
-    "https://play.google.com/store/apps/details?id=com.playwe.gaip",
-    "https://play.google.com/store/apps/details?id=com.stack.mansion",
+    ("gp_001", "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001"),
+    ("gp_002", "https://play.google.com/store/apps/details?id=com.game78.fishgoo"),
+    ("gp_003", "https://play.google.com/store/apps/details?id=com.khalidy.fortunecatch"),
+    ("gp_004", "https://play.google.com/store/apps/details?id=com.idolive.fishingwars"),
+    ("gp_005", "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame"),
+    ("gp_006", "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang"),
+    # ("gp_007", "https://play.google.com/store/apps/details?id=com.gamesters.gridora"),
+    ("gp_008", "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026"),
+    ("gp_009", "https://play.google.com/store/apps/details?id=com.maxminder2.feedbackhub"),
+    ("gp_010", "https://play.google.com/store/apps/details?id=com.maxminder1.helixflow"),
+    ("gp_011", "https://play.google.com/store/apps/details?id=com.tigerfruite.match2"),
+    ("gp_012", "https://play.google.com/store/apps/details?id=com.vikas.kaifeducation"),
+    ("gp_013", "https://play.google.com/store/apps/details?id=com.rabbitsgame.slotsgogo2026"),
+    ("gp_014", "https://play.google.com/store/apps/details?id=com.tigeranddragon.doocosj2026"),
+    ("gp_015", "https://play.google.com/store/apps/details?id=com.NimbusDash.hks"),
+    ("gp_016", "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel"),
+    ("gp_017", "https://play.google.com/store/apps/details?id=com.icefallrescue.app"),
+    ("gp_018", "https://play.google.com/store/apps/details?id=com.plinkogame.tigerplinko"),
+    ("gp_019", "https://play.google.com/store/apps/details?id=com.foxgamec.foxgames2026"),
+    ("gp_020", "https://play.google.com/store/apps/details?id=com.magicgames.rabbit"),
+    ("gp_021", "https://play.google.com/store/apps/details?id=com.rabbitstory.discovery2026"),
+    ("gp_022", "https://play.google.com/store/apps/details?id=com.pandagame.pandamatch3"),
+    ("gp_023", "https://play.google.com/store/apps/details?id=com.majiangganme.majiang"),
+    ("gp_024", "https://play.google.com/store/apps/details?id=com.pandagame.majiang002"),
+    ("gp_025", "https://play.google.com/store/apps/details?id=com.pandangame.majiangtooo003"),
+    ("gp_026", "https://play.google.com/store/apps/details?id=com.pandamajiang.majiang004"),
+    ("gp_027", "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005"),
+    ("gp_028", "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame006"),
+    ("gp_029", "https://play.google.com/store/apps/details?id=pak.al.nasir.bugzy.tap.hunting"),
+    ("gp_030", "https://play.google.com/store/apps/details?id=com.nafay.drift"),
+    ("gp_031", "https://play.google.com/store/apps/details?id=com.nafay.brain"),
+    ("gp_032", "https://play.google.com/store/apps/details?id=com.cube.firstdream"),
+    ("gp_033", "https://play.google.com/store/apps/details?id=com.playwe.gaip"),
+    ("gp_034", "https://play.google.com/store/apps/details?id=com.stack.mansion"),
 ]
 
 def send_tg(msg):
@@ -72,11 +70,17 @@ if __name__ == "__main__":
     now_time = (datetime.utcnow() + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
     online = []
     offline = []
-    for link in APP_LIST:
-        if check_link(link):
-            online.append(link)
-        else:
-            offline.append(link)
+
+    # 遍历：序号 + 渠道号 + 链接
+    for idx, (channel_tag, link) in enumerate(APP_LIST, 1):
+        try:
+            content = f"{idx}. {channel_tag}  {link}"
+            if check_link(link):
+                online.append(content)
+            else:
+                offline.append(content)
+        except:
+            continue
 
     content = "\n".join([
         "【谷歌应用状态巡检】",
