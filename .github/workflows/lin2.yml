@@ -1,37 +1,35 @@
-# 定时任务名称：lin 账户谷歌应用巡检
+# lin 账户谷歌应用巡检
 name: lin的账户定时巡检
 
-# 触发条件：手动运行 + 定时执行
+# 触发方式：手动 + 每小时执行
 on:
-  push:                       # 代码提交时触发（可选）
-  workflow_dispatch:          # 允许手动点击运行
+  push:
+  workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"       # 定时规则：【每小时执行一次】
+    - cron: "0 * * * *"  # 每小时一次
 
-# 全局环境变量：修复 Node.js 版本警告
+# 全局环境变量
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-# 任务执行配置
 jobs:
   run-task:
-    runs-on: ubuntu-latest    # 运行环境：Ubuntu 最新版
-    timeout-minutes: 5        # 超时时间：5 分钟自动停止
-
-    # 执行步骤
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - name: 拉取代码
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 配置 Python 环境
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: 安装依赖并执行巡检脚本
+      - name: Run Check
         env:
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}          # TG 机器人密钥
-          TG_CHAT_IDS_LIN: ${{ secrets.TG_CHAT_IDS_LIN }}    # TG 接收消息群ID
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_IDS_LIN: ${{ secrets.TG_CHAT_IDS_LIN }}
+          # TG_CHAT_IDS_LIN2: ${{ secrets.TG_CHAT_IDS_LIN2 }}  # 第二个群（复制启用）
         run: |
-          pip install requests       # 安装网络请求依赖
-          python lin2.py             # 执行谷歌应用巡检脚本
+          pip install requests
+          python lin2.py
