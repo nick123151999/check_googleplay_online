@@ -1,7 +1,6 @@
 import os
 import urllib.request
 import urllib.parse
-import time
 from datetime import datetime, timedelta
 
 # 密钥配置
@@ -15,7 +14,6 @@ APP_LIST = [
     ("hwpg_1396", "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame"),
     ("hwpg_1398", "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang"),
     ("hwpg_1399", "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001"),
-    
 ]
 
 # 发送TG消息
@@ -74,7 +72,4 @@ def run_check():
     print("✅ 巡检完成")
 
 if __name__ == "__main__":
-    while True:
-        run_check()
-        print("⏱ 等待 1 小时后再次检查...")
-        time.sleep(3600)
+    run_check()  # 只执行一次，不再循环
