@@ -3,7 +3,18 @@ import requests
 from datetime import datetime, timedelta
 
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
-CHAT_IDS = os.getenv("TG_CHAT_IDS_LIN", "").split(",")
+
+# ===================== 【改造核心】兼容 1个/多个群 ID =====================
+def get_chat_ids(var_name):
+    raw = os.getenv(var_name, "").strip()
+    return [cid.strip() for cid in raw.split(",") if cid.strip()]
+
+# 支持多个 Secrets，一个参数一个群（以后加群直接加行）
+CHAT_IDS = []
+CHAT_IDS += get_chat_ids("TG_CHAT_IDS_LIN")   # 你原来的
+# CHAT_IDS += get_chat_ids("TG_CHAT_IDS_LIN2")  # 加群就加这行
+# CHAT_IDS += get_chat_ids("TG_CHAT_IDS_LIN3")
+# ==========================================================================
 
 APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel",
@@ -11,7 +22,6 @@ APP_LIST = [
 
 def send_tg(msg):
     for chat_id in CHAT_IDS:
-        chat_id = chat_id.strip()
         if not chat_id:
             continue
         try:
@@ -19,7 +29,6 @@ def send_tg(msg):
             data = {
                 "chat_id": chat_id,
                 "text": msg,
-                # "disable_web_page_preview": True
             }
             r = requests.post(url, json=data, timeout=10)
             print(f"✅ 发送到 {chat_id} 结果: {r.status_code}")
