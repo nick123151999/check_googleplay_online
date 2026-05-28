@@ -4,20 +4,20 @@ from datetime import datetime, timedelta
 
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 
-# ===================== 【改造核心】兼容 1个/多个群 ID =====================
+# ===================== 多群发送（兼容1个/多个群ID） =====================
 def get_chat_ids(var_name):
     raw = os.getenv(var_name, "").strip()
     return [cid.strip() for cid in raw.split(",") if cid.strip()]
 
-# 支持多个 Secrets，一个参数一个群（以后加群直接加行）
 CHAT_IDS = []
-CHAT_IDS += get_chat_ids("TG_CHAT_IDS_LIN")   # 你原来的
-# CHAT_IDS += get_chat_ids("TG_CHAT_IDS_LIN2")  # 加群就加这行
-# CHAT_IDS += get_chat_ids("TG_CHAT_IDS_LIN3")
-# ==========================================================================
+CHAT_IDS += get_chat_ids("TG_CHAT_IDS_LIN")
+# ======================================================================
 
+# 格式：(渠道号, 链接) → 自动带编号
 APP_LIST = [
-    "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel",
+    ("gp_001", "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel"),
+    # 以后加应用就这样加：
+    # ("gp_002", "https://play.google.com/xxx"),
 ]
 
 def send_tg(msg):
@@ -47,11 +47,17 @@ if __name__ == "__main__":
     now = (datetime.utcnow() + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
     online = []
     offline = []
-    for link in APP_LIST:
-        if check_link(link):
-            online.append(link)
-        else:
-            offline.append(link)
+
+    # 自动编号 + 渠道号
+    for idx, (channel_tag, link) in enumerate(APP_LIST, 1):
+        try:
+            line = f"{idx}. {channel_tag}  {link}"
+            if check_link(link):
+                online.append(line)
+            else:
+                offline.append(line)
+        except:
+            continue
 
     content = "\n".join([
         "【谷歌应用状态巡检】",
