@@ -12,7 +12,7 @@ def get_chat_ids(var_name):
 
 # 加载所有群ID
 CHAT_IDS = []
-CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_COMP1"))
+CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_OWN"))
 # CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_COMP2"))
 
 # 格式：(渠道编号, 谷歌商店链接)
