@@ -3,7 +3,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: "0 */2 * * *"
+    - cron: "0 */2 * * *"  # 每 2 小时执行一次
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -24,6 +24,6 @@ jobs:
       - name: Run Check
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_CHAT_ID_COMP1: ${{ secrets.TG_CHAT_ID_OWN }}
+          TG_CHAT_ID_OWN: ${{ secrets.TG_CHAT_ID_OWN }}
           # TG_CHAT_ID_COMP2: ${{ secrets.TG_CHAT_ID_COMP2 }}
         run: python own6688.py
