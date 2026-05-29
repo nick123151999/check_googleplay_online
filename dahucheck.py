@@ -16,7 +16,7 @@ def get_chat_ids(var_name):
 # 一个 Secrets = 一个群，安全不乱
 # 加群只需要复制下面一行，改数字即可
 CHAT_IDS = []
-CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID"))       # 默认群（你原来的）
+CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_DAHU"))       # 默认群（你原来的）
 # CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_COMP2"))  # 第二个群（复制这行加群）
 # CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_COMP3"))  # 第三个群
 # CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_COMP4"))  # 第四个群
