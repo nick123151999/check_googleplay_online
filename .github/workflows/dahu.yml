@@ -19,6 +19,6 @@ jobs:
       - name: Run check script
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID_DAHU }}
           # TG_CHAT_ID_COMP2: ${{ secrets.TG_CHAT_ID_COMP2 }}  # 第二个群
         run: python dahucheck.py
