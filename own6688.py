@@ -51,6 +51,9 @@ APP_LIST = [
     ("gp_032", "https://play.google.com/store/apps/details?id=com.cube.firstdream"),
     ("gp_033", "https://play.google.com/store/apps/details?id=com.playwe.gaip"),
     ("gp_034", "https://play.google.com/store/apps/details?id=com.stack.mansion"),
+    ("gp_035", "https://play.google.com/store/apps/details?id=com.cgmvtwrfz.ncortwc2"),
+    ("gp_036", "https://play.google.com/store/apps/details?id=com.tuhbas.ncnfu3"),
+    ("gp_037", "https://play.google.com/store/apps/details?id=com.rljxmuxcjw.fpyxkfxf4"),
 ]
 
 # 发送消息
