@@ -54,6 +54,13 @@ APP_LIST = [
     ("gp_035", "https://play.google.com/store/apps/details?id=com.cgmvtwrfz.ncortwc2"),
     ("gp_036", "https://play.google.com/store/apps/details?id=com.tuhbas.ncnfu3"),
     ("gp_037", "https://play.google.com/store/apps/details?id=com.rljxmuxcjw.fpyxkfxf4"),
+    ("gp_038", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20481"),
+    ("gp_039", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20482"),
+    ("gp_040", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20483"),
+    ("gp_041", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20484"),
+    ("gp_042", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20485"),
+
+    
 ]
 
 # 发送消息
