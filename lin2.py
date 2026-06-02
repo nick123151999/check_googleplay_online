@@ -21,7 +21,7 @@ CHAT_IDS.extend(get_chat_ids("TG_CHAT_IDS_LIN"))       # lin 默认群
 
 # 应用列表：(渠道号, 谷歌链接)
 APP_LIST = [
-    ("gp_001", "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel"),
+    ("Lucky Spin Wheel Game 2026", "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel"),
 ]
 # ======================================================
 
