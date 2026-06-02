@@ -37,6 +37,7 @@ def send_tg(msg):
             data = {
                 "chat_id": chat_id,
                 "text": msg
+                "disable_web_page_preview": True
             }
             r = requests.post(url, json=data, timeout=10)
         except Exception as e:
