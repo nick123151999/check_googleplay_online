@@ -26,7 +26,7 @@ APP_LIST = [
 # ======================================================
 
 # ---------------------
-# 发送 TG 消息（支持多群）
+# 发送 TG 消息（支持多群 + 关闭链接预览）
 # ---------------------
 def send_tg(msg):
     for chat_id in CHAT_IDS:
@@ -36,8 +36,8 @@ def send_tg(msg):
             url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
             data = {
                 "chat_id": chat_id,
-                "text": msg
-                "disable_web_page_preview": True
+                "text": msg,
+                "disable_web_page_preview": True  # ✅ 这里关闭缩略图
             }
             r = requests.post(url, json=data, timeout=10)
         except Exception as e:
