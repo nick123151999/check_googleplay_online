@@ -39,7 +39,7 @@ def send_tg(msg):
             continue
         try:
             url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-            data = {"chat_id": chat_id, "text": msg}
+            data = {"chat_id": chat_id, "text": msg, "disable_web_page_preview": True}
             req = urllib.request.Request(url, data=urllib.parse.urlencode(data).encode("utf-8"), method="POST")
             with urllib.request.urlopen(req, timeout=10):
                 pass
