@@ -15,7 +15,7 @@ CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_DAHU"))
 
 # 格式：(渠道号, 链接, B面审核通过时间，投放时间, 下架时间)
 APP_LIST = [
-    ("hwpg_1394", "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026", "2026-05-14", "2026-05-16", ""),
+    ("hwpg_1394", "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026", "2026-05-14", "2026-05-16", "2026-6-4"),
     ("hwpg_1395", "https://play.google.com/store/apps/details?id=com.gamesters.gridora", "", "", ""),
     ("hwpg_1396", "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame", "2026-05-17", "2026-05-19", ""),
     ("hwpg_1398", "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang", "2026-05-20", "2026-05-21", ""),
