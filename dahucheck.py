@@ -92,7 +92,7 @@ def run_check():
             if start_date.strip() and days is not None:
                 # B面在前
                 if b_date.strip():
-                    line += f" | B面审核通过时间：{b_date}"
+                    line += f" | B面过审：{b_date}"
                 line += f" | 投放：{start_date} | 投放：{days} 天"
                 
                 if off_date.strip():
