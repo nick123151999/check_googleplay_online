@@ -14,7 +14,7 @@ CHAT_IDS.extend(get_chat_ids("TG_CHAT_IDS_LIN"))
 
 # 🔥 格式：(渠道名, 链接, B面审核通过时间, 投放时间, 下架时间)
 APP_LIST = [
-    ("Lucky Spin Wheel Game 2026", "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel", "2026-05-16", "2026-05-17", ""),
+    ("Lucky Spin Wheel Game 2026", "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel", "2026-05-26", "2026-05-29", ""),
     # 继续加在这里
 ]
 
