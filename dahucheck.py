@@ -32,7 +32,8 @@ def calc_days(start_date_str, end_date_str):
             return None  # 无投放时间 → 不计算
         
         now = datetime.utcnow() + timedelta(hours=8)
-        start = datetime.strptime(start_date_str, "%Y-%-%d")
+        # 这里修复了！原来写错了导致时间解析失败
+        start = datetime.strptime(start_date_str, "%Y-%m-%d")
 
         if end_date_str.strip():
             end = datetime.strptime(end_date_str, "%Y-%m-%d")
@@ -88,9 +89,9 @@ def run_check():
             days = calc_days(start_date, off_date)
             line = f"{tag}"
 
-            # ✅ 只有投放时间不为空，才显示投放、天数、下架时间
+            # 只有投放时间不为空，才显示投放、天数、下架时间
             if start_date.strip() and days is not None:
-                line += f" | 投放：{start_date} | 存活：{days} 天"
+                line += f" | 投放时间：{start_date} | 存活：{days} 天"
                 
                 # 已下架 + 填写了下架时间 → 显示
                 if off_date.strip():
@@ -102,7 +103,7 @@ def run_check():
                 normal.append(line)
             else:
                 down.append(line)
-        except:
+        except Exception as e:
             continue
 
     # 构造消息
