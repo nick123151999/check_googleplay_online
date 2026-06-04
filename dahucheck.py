@@ -82,24 +82,17 @@ def run_check():
     normal = []
     down = []
 
-    # 遍历：渠道,链接,B面,投放,下架
     for tag, url, b_date, start_date, off_date in APP_LIST:
         try:
             days = calc_days(start_date, off_date)
             line = f"{tag}"
-
-            # 有投放时间才展示所有日期信息
             if start_date.strip() and days is not None:
-                # B面在前
                 if b_date.strip():
                     line += f" | B面过审：{b_date}"
                 line += f" | 投放：{start_date} | 投放：{days} 天"
-                
                 if off_date.strip():
                     line += f"\n下架时间：{off_date}"
-
             line += f"\n{url}"
-
             if check_ok(url):
                 normal.append(line)
             else:
@@ -107,18 +100,13 @@ def run_check():
         except:
             continue
 
-    text = "\n".join([
-        "【谷歌应用定时巡检播报】",
-        f"巡检时间：{now_time} (北京时间)",
-        f"正常上架：{len(normal)} 个",
-        f"已下架应用：{len(down)} 个",
-        "",
-        "✅正常：",
-        "\n\n".join(normal) if normal else "无",
-        "",
-        "❌下架：",
-        "\n\n".join(down) if down else "无"
-    ])
+    # 彻底删除多余空行，全部紧挨着
+    text = "【谷歌应用定时巡检播报】\n" \
+           f"巡检时间：{now_time} (北京时间)\n" \
+           f"正常上架：{len(normal)} 个\n" \
+           f"已下架应用：{len(down)} 个\n" \
+           "✅正常：\n" + "\n".join(normal if normal else ["无"]) + "\n" \
+           "❌下架：\n" + "\n".join(down if down else ["无"])
     
     send_tg(text)
     print("✅ 巡检完成")
