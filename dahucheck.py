@@ -93,7 +93,7 @@ def run_check():
                 # B面在前
                 if b_date.strip():
                     line += f" | B面审核通过时间：{b_date}"
-                line += f" | 投放：{start_date} | 存活：{days} 天"
+                line += f" | 投放：{start_date} | 投放：{days} 天"
                 
                 if off_date.strip():
                     line += f"\n下架时间：{off_date}"
