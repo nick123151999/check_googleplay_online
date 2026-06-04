@@ -4,34 +4,48 @@ import urllib.parse
 from datetime import datetime, timedelta
 
 # ===================== 【配置区域】 =====================
-# TG 机器人 Token（从 Secrets 读取）
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 
-# 群ID配置：兼容 单个群ID / 多个群ID（英文逗号分隔）
 def get_chat_ids(var_name):
     raw = os.getenv(var_name, "").strip()
     return [cid.strip() for cid in raw.split(",") if cid.strip()]
 
-# ========== 【多群发送配置】 ==========
-# 一个 Secrets = 一个群，安全不乱
-# 加群只需要复制下面一行，改数字即可
 CHAT_IDS = []
-CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_DAHU"))       # 默认群
-# CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_COMP2"))  # 第二个群（复制这行加群）
-# CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_COMP3"))  # 第三个群
-# ======================================
+CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_DAHU"))
 
-# 应用列表：(渠道号, 谷歌商店链接)
+# 格式：(渠道号, 链接, 投放时间, 下架时间)
+# 投放时间为空 → 不统计天数、不显示投放/下架信息
 APP_LIST = [
-    ("hwpg_1394", "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026"),
-    ("hwpg_1395", "https://play.google.com/store/apps/details?id=com.gamesters.gridora"),
-    ("hwpg_1396", "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame"),
-    ("hwpg_1398", "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang"),
-    ("hwpg_1399", "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001"),
+    ("hwpg_1394", "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026", "2026-05-16", ""),
+    ("hwpg_1395", "https://play.google.com/store/apps/details?id=com.gamesters.gridora", "", ""),# 无投放时间 → 不统计
+    ("hwpg_1396", "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame", "2026-05-19", ""),  
+    ("hwpg_1398", "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang", "2026-05-21", ""),
+    ("hwpg_1399", "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001", "2026-05-26", ""),
 ]
 
 # ---------------------
-# 发送 TG 消息（支持多群）
+# 计算天数（只有投放时间不为空才计算）
+# ---------------------
+def calc_days(start_date_str, end_date_str):
+    try:
+        if not start_date_str.strip():
+            return None  # 无投放时间 → 不计算
+        
+        now = datetime.utcnow() + timedelta(hours=8)
+        start = datetime.strptime(start_date_str, "%Y-%-%d")
+
+        if end_date_str.strip():
+            end = datetime.strptime(end_date_str, "%Y-%m-%d")
+        else:
+            end = now
+
+        days = (end.date() - start.date()).days
+        return max(days, 0)
+    except:
+        return None
+
+# ---------------------
+# 发送 TG
 # ---------------------
 def send_tg(msg):
     for chat_id in CHAT_IDS:
@@ -47,7 +61,7 @@ def send_tg(msg):
             pass
 
 # ---------------------
-# 检查应用是否可访问（正常/下架）
+# 检查应用状态
 # ---------------------
 def check_ok(url):
     try:
@@ -57,51 +71,56 @@ def check_ok(url):
             return f.getcode() == 200
     except Exception as e:
         err = str(e).lower()
-        # 出现 404 / 410 判定为已下架
         if "404" in err or "410" in err:
             return False
         return True
 
 # ---------------------
-# 巡检主逻辑
+# 主巡检逻辑
 # ---------------------
 def run_check():
-    # 获取当前北京时间
-    now = (datetime.utcnow() + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
-    normal = []  # 正常应用
-    down = []    # 下架应用
+    now_time = (datetime.utcnow() + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
+    normal = []
+    down = []
 
-    # 遍历检查每个应用
-    for tag, url in APP_LIST:
+    for tag, url, start_date, off_date in APP_LIST:
         try:
-            content = f"{tag}：{url}"
+            days = calc_days(start_date, off_date)
+            line = f"{tag}"
+
+            # ✅ 只有投放时间不为空，才显示投放、天数、下架时间
+            if start_date.strip() and days is not None:
+                line += f" | 投放：{start_date} | 存活：{days} 天"
+                
+                # 已下架 + 填写了下架时间 → 显示
+                if off_date.strip():
+                    line += f"\n下架时间：{off_date}"
+
+            line += f"\n{url}"
+
             if check_ok(url):
-                normal.append(content)
+                normal.append(line)
             else:
-                down.append(content)
+                down.append(line)
         except:
             continue
 
-    # 构造推送消息
+    # 构造消息
     text = "\n".join([
         "【谷歌应用定时巡检播报】",
-        f"巡检时间：{now} (北京时间)",
+        f"巡检时间：{now_time} (北京时间)",
         f"正常上架：{len(normal)} 个",
         f"已下架应用：{len(down)} 个",
         "",
         "✅正常：",
-        "\n".join(normal) if normal else "无",
+        "\n\n".join(normal) if normal else "无",
         "",
         "❌下架：",
-        "\n".join(down) if down else "无"
+        "\n\n".join(down) if down else "无"
     ])
     
-    # 发送消息
     send_tg(text)
     print("✅ 巡检完成")
 
-# ---------------------
-# 程序入口（只执行一次）
-# ---------------------
 if __name__ == "__main__":
     run_check()
