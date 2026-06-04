@@ -13,14 +13,13 @@ def get_chat_ids(var_name):
 CHAT_IDS = []
 CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_DAHU"))
 
-# 格式：(渠道号, 链接, 投放时间, 下架时间)
-# 投放时间为空 → 不统计天数、不显示投放/下架信息
+# 格式：(渠道号, 链接, B面审核通过时间，投放时间, 下架时间)
 APP_LIST = [
-    ("hwpg_1394", "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026", "2026-05-16", ""),
-    ("hwpg_1395", "https://play.google.com/store/apps/details?id=com.gamesters.gridora", "", ""),# 无投放时间 → 不统计
-    ("hwpg_1396", "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame", "2026-05-19", ""),  
-    ("hwpg_1398", "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang", "2026-05-21", ""),
-    ("hwpg_1399", "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001", "2026-05-26", ""),
+    ("hwpg_1394", "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026", "2026-05-14", "2026-05-16", ""),
+    ("hwpg_1395", "https://play.google.com/store/apps/details?id=com.gamesters.gridora", "", "", ""),
+    ("hwpg_1396", "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame", "2026-05-17", "2026-05-19", ""),
+    ("hwpg_1398", "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang", "2026-05-20", "2026-05-21", ""),
+    ("hwpg_1399", "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001", "2026-05-25", "2026-05-26", ""),
 ]
 
 # ---------------------
@@ -29,10 +28,9 @@ APP_LIST = [
 def calc_days(start_date_str, end_date_str):
     try:
         if not start_date_str.strip():
-            return None  # 无投放时间 → 不计算
+            return None
         
         now = datetime.utcnow() + timedelta(hours=8)
-        # 这里修复了！原来写错了导致时间解析失败
         start = datetime.strptime(start_date_str, "%Y-%m-%d")
 
         if end_date_str.strip():
@@ -68,8 +66,8 @@ def check_ok(url):
     try:
         headers = {"User-Agent": "Mozilla/5.0"}
         req = urllib.request.Request(url, headers=headers, method='GET')
-        with urllib.request.urlopen(req, timeout=15) as f:
-            return f.getcode() == 200
+        with urllib.request.urlopen(req, timeout=15):
+            return True
     except Exception as e:
         err = str(e).lower()
         if "404" in err or "410" in err:
@@ -84,16 +82,19 @@ def run_check():
     normal = []
     down = []
 
-    for tag, url, start_date, off_date in APP_LIST:
+    # 遍历：渠道,链接,B面,投放,下架
+    for tag, url, b_date, start_date, off_date in APP_LIST:
         try:
             days = calc_days(start_date, off_date)
             line = f"{tag}"
 
-            # 只有投放时间不为空，才显示投放、天数、下架时间
+            # 有投放时间才展示所有日期信息
             if start_date.strip() and days is not None:
-                line += f" | 投放时间：{start_date} | 存活：{days} 天"
+                # B面在前
+                if b_date.strip():
+                    line += f" | B面审核通过时间：{b_date}"
+                line += f" | 投放：{start_date} | 存活：{days} 天"
                 
-                # 已下架 + 填写了下架时间 → 显示
                 if off_date.strip():
                     line += f"\n下架时间：{off_date}"
 
@@ -103,10 +104,9 @@ def run_check():
                 normal.append(line)
             else:
                 down.append(line)
-        except Exception as e:
+        except:
             continue
 
-    # 构造消息
     text = "\n".join([
         "【谷歌应用定时巡检播报】",
         f"巡检时间：{now_time} (北京时间)",
