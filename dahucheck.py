@@ -100,13 +100,13 @@ def run_check():
         except:
             continue
 
-    # 彻底删除多余空行，全部紧挨着
+    # 条目之间空一行，其余标题紧凑无多余换行
     text = "【谷歌应用定时巡检播报】\n" \
            f"巡检时间：{now_time} (北京时间)\n" \
            f"正常上架：{len(normal)} 个\n" \
            f"已下架应用：{len(down)} 个\n" \
-           "✅正常：\n" + "\n".join(normal if normal else ["无"]) + "\n" \
-           "❌下架：\n" + "\n".join(down if down else ["无"])
+           "✅正常：\n" + "\n\n".join(normal if normal else ["无"]) + "\n" \
+           "❌下架：\n" + "\n\n".join(down if down else ["无"])
     
     send_tg(text)
     print("✅ 巡检完成")
