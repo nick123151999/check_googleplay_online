@@ -2,7 +2,7 @@ name: 大户账号巡检
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"  # 每小时一次
+    - cron: "0 */2 * * *"  # 每2小时整点查询一次
 
 jobs:
   check-apps:
