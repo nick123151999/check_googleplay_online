@@ -1,10 +1,8 @@
 import os
 import requests
 from datetime import datetime, timedelta
-
 # ===================== 【配置区域】 =====================
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
-
 def get_chat_ids(var_name):
     raw = os.getenv(var_name, "").strip()
     return [cid.strip() for cid in raw.split(",") if cid.strip()]
