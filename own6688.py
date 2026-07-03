@@ -59,11 +59,11 @@ APP_LIST = [
     ("gp_040", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20483"),
     ("gp_041", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20484"),
     ("gp_042", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20485"),
-     ("gp_043", "https://play.google.com/store/apps/details?id=com.soccer.playerd"),
-     ("gp_044", "https://play.google.com/store/apps/details?id=com.pksoccer23.pksoccer1"),
-     ("gp_045", "https://play.google.com/store/apps/details?id=com.dylhimky.drudnxyldj2"),
+    ("gp_043", "https://play.google.com/store/apps/details?id=com.soccer.playerd"),
+    ("gp_044", "https://play.google.com/store/apps/details?id=com.pksoccer23.pksoccer1"),
+    ("gp_045", "https://play.google.com/store/apps/details?id=com.dylhimky.drudnxyldj2"),
     ("gp_046", "https://play.google.com/store/apps/details?id=com.gttob.xmgjfjulu3"),
-     ("gp_042", "https://play.google.com/store/apps/details?id=com.funnyjackfootball.app"),
+    ("gp_047", "https://play.google.com/store/apps/details?id=com.funnyjackfootball.app"),
 
     
 ]
