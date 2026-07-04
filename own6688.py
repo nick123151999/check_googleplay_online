@@ -15,57 +15,57 @@ CHAT_IDS = []
 CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_OWN"))
 # CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_COMP2"))
 
-# 格式：(渠道编号, 谷歌商店链接)
+# 只保留链接，移除gp渠道编号
 APP_LIST = [
-    ("gp_001", "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001"),
-    ("gp_002", "https://play.google.com/store/apps/details?id=com.game78.fishgoo"),
-    ("gp_003", "https://play.google.com/store/apps/details?id=com.khalidy.fortunecatch"),
-    ("gp_004", "https://play.google.com/store/apps/details?id=com.idolive.fishingwars"),
-    ("gp_005", "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame"),
-    ("gp_006", "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang"),
-    # ("gp_007", "https://play.google.com/store/apps/details?id=com.gamesters.gridora"),
-    # ("gp_008", "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026"),
-    ("gp_009", "https://play.google.com/store/apps/details?id=com.maxminder2.feedbackhub"),
-    ("gp_010", "https://play.google.com/store/apps/details?id=com.maxminder1.helixflow"),
-    ("gp_011", "https://play.google.com/store/apps/details?id=com.tigerfruite.match2"),
-    ("gp_012", "https://play.google.com/store/apps/details?id=com.vikas.kaifeducation"),
-    ("gp_013", "https://play.google.com/store/apps/details?id=com.rabbitsgame.slotsgogo2026"),
-    ("gp_014", "https://play.google.com/store/apps/details?id=com.tigeranddragon.doocosj2026"),
-    ("gp_015", "https://play.google.com/store/apps/details?id=com.NimbusDash.hks"),
-    ("gp_016", "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel"),
-    # ("gp_017", "https://play.google.com/store/apps/details?id=com.icefallrescue.app"),
-    # ("gp_018", "https://play.google.com/store/apps/details?id=com.plinkogame.tigerplinko"),
-    ("gp_019", "https://play.google.com/store/apps/details?id=com.foxgamec.foxgames2026"),
-    ("gp_020", "https://play.google.com/store/apps/details?id=com.magicgames.rabbit"),
-    ("gp_021", "https://play.google.com/store/apps/details?id=com.rabbitstory.discovery2026"),
-    ("gp_022", "https://play.google.com/store/apps/details?id=com.pandagame.pandamatch3"),
-    ("gp_023", "https://play.google.com/store/apps/details?id=com.majiangganme.majiang"),
-    # ("gp_024", "https://play.google.com/store/apps/details?id=com.pandagame.majiang002"),
-    ("gp_025", "https://play.google.com/store/apps/details?id=com.pandangame.majiangtooo003"),
-    ("gp_026", "https://play.google.com/store/apps/details?id=com.pandamajiang.majiang004"),
-    ("gp_027", "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005"),
-    ("gp_028", "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame006"),
-    ("gp_029", "https://play.google.com/store/apps/details?id=pak.al.nasir.bugzy.tap.hunting"),
-    ("gp_030", "https://play.google.com/store/apps/details?id=com.nafay.drift"),
-    ("gp_031", "https://play.google.com/store/apps/details?id=com.nafay.brain"),
-    # ("gp_032", "https://play.google.com/store/apps/details?id=com.cube.firstdream"),
-    # ("gp_033", "https://play.google.com/store/apps/details?id=com.playwe.gaip"),
-    # ("gp_034", "https://play.google.com/store/apps/details?id=com.stack.mansion"),
-    ("gp_035", "https://play.google.com/store/apps/details?id=com.cgmvtwrfz.ncortwc2"),
-    ("gp_036", "https://play.google.com/store/apps/details?id=com.tuhbas.ncnfu3"),
-    ("gp_037", "https://play.google.com/store/apps/details?id=com.rljxmuxcjw.fpyxkfxf4"),
-    ("gp_038", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20481"),
-    ("gp_039", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20482"),
-    ("gp_040", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20483"),
-    ("gp_041", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20484"),
-    ("gp_042", "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20485"),
-    ("gp_043", "https://play.google.com/store/apps/details?id=com.soccer.playerd"),
-    ("gp_044", "https://play.google.com/store/apps/details?id=com.pksoccer23.pksoccer1"),
-    ("gp_045", "https://play.google.com/store/apps/details?id=com.dylhimky.drudnxyldj2"),
-    ("gp_046", "https://play.google.com/store/apps/details?id=com.gttob.xmgjfjulu3"),
-    ("gp_047", "https://play.google.com/store/apps/details?id=com.funnyjackfootball.app"),
-
-    
+    "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001",
+    "https://play.google.com/store/apps/details?id=com.game78.fishgoo",
+    "https://play.google.com/store/apps/details?id=com.khalidy.fortunecatch",
+    "https://play.google.com/store/apps/details?id=com.idolive.fishingwars",
+    "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
+    "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang",
+    # "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
+    # "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
+    "https://play.google.com/store/apps/details?id=com.maxminder2.feedbackhub",
+    "https://play.google.com/store/apps/details?id=com.maxminder1.helixflow",
+    "https://play.google.com/store/apps/details?id=com.tigerfruite.match2",
+    "https://play.google.com/store/apps/details?id=com.vikas.kaifeducation",
+    "https://play.google.com/store/apps/details?id=com.rabbitsgame.slotsgogo2026",
+    "https://play.google.com/store/apps/details?id=com.tigeranddragon.doocosj2026",
+    "https://play.google.com/store/apps/details?id=com.NimbusDash.hks",
+    "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel",
+    # "https://play.google.com/store/apps/details?id=com.icefallrescue.app",
+    # "https://play.google.com/store/apps/details?id=com.plinkogame.tigerplinko",
+    "https://play.google.com/store/apps/details?id=com.foxgamec.foxgames2026",
+    "https://play.google.com/store/apps/details?id=com.magicgames.rabbit",
+    "https://play.google.com/store/apps/details?id=com.rabbitstory.discovery2026",
+    "https://play.google.com/store/apps/details?id=com.pandagame.pandamatch3",
+    "https://play.google.com/store/apps/details?id=com.majiangganme.majiang",
+    # "https://play.google.com/store/apps/details?id=com.pandagame.majiang002",
+    "https://play.google.com/store/apps/details?id=com.pandangame.majiangtooo003",
+    "https://play.google.com/store/apps/details?id=com.pandamajiang.majiang004",
+    "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005",
+    "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame006",
+    "https://play.google.com/store/apps/details?id=pak.al.nasir.bugzy.tap.hunting",
+    "https://play.google.com/store/apps/details?id=com.nafay.drift",
+    "https://play.google.com/store/apps/details?id=com.nafay.brain",
+    # "https://play.google.com/store/apps/details?id=com.cube.firstdream",
+    # "https://play.google.com/store/apps/details?id=com.playwe.gaip",
+    # "https://play.google.com/store/apps/details?id=com.stack.mansion",
+    "https://play.google.com/store/apps/details?id=com.cgmvtwrfz.ncortwc2",
+    "https://play.google.com/store/apps/details?id=com.tuhbas.ncnfu3",
+    "https://play.google.com/store/apps/details?id=com.rljxmuxcjw.fpyxkfxf4",
+    "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20481",
+    "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20482",
+    "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20483",
+    "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20484",
+    "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20485",
+    "https://play.google.com/store/apps/details?id=com.soccer.playerd",
+    "https://play.google.com/store/apps/details?id=com.pksoccer23.pksoccer1",
+    "https://play.google.com/store/apps/details?id=com.dylhimky.drudnxyldj2",
+    "https://play.google.com/store/apps/details?id=com.gttob.xmgjfjulu3",
+    "https://play.google.com/store/apps/details?id=com.funnyjackfootball.app",
+    "https://play.google.com/store/apps/details?id=vn.sadliersoccer.main",
+    "https://play.google.com/store/apps/details?id=xyz.swiftgoalsoccer.mobile",
 ]
 
 # 发送消息
@@ -97,9 +97,10 @@ if __name__ == "__main__":
     online = []
     offline = []
 
-    for idx, (channel_tag, link) in enumerate(APP_LIST, 1):
+    # 遍历列表，自动生成1、2、3序号，不再显示gp编号
+    for idx, link in enumerate(APP_LIST, 1):
         try:
-            content = f"{idx}. {channel_tag}  {link}"
+            content = f"{idx}. {link}"
             if check_link(link):
                 online.append(content)
             else:
