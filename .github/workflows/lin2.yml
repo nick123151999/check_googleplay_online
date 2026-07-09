@@ -29,7 +29,7 @@ jobs:
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_IDS_LIN: ${{ secrets.TG_CHAT_IDS_LIN }}
-          # TG_CHAT_IDS_LIN2: ${{ secrets.TG_CHAT_IDS_LIN2 }}  # 第二个群（复制启用）
+          TG_CHAT_IDS_LIN2: ${{ secrets.TG_CHAT_IDS_LIN2 }}  # 第二个群（复制启用）
         run: |
           pip install requests
           python lin2.py
