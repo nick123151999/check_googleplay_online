@@ -20,5 +20,4 @@ jobs:
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID_DAHU: ${{ secrets.TG_CHAT_ID_DAHU }}
-          # TG_CHAT_ID_COMP2: ${{ secrets.TG_CHAT_ID_COMP2 }}
         run: python dahucheck.py
