@@ -66,6 +66,7 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.funnyjackfootball.app",
     "https://play.google.com/store/apps/details?id=vn.sadliersoccer.main",
     "https://play.google.com/store/apps/details?id=xyz.swiftgoalsoccer.mobile",
+    https://play.google.com/store/apps/details?id=com.ailleyusportsoccer.app
 ]
 
 # 发送消息
