@@ -17,7 +17,7 @@ CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_OWN"))
 
 # 只保留链接，移除gp渠道编号
 APP_LIST = [
-    "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001",
+    # "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001",
     "https://play.google.com/store/apps/details?id=com.game78.fishgoo",
     "https://play.google.com/store/apps/details?id=com.khalidy.fortunecatch",
     "https://play.google.com/store/apps/details?id=com.idolive.fishingwars",
