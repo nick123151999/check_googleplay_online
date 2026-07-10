@@ -20,7 +20,7 @@ APP_LIST = [
     # ("hwpg_1395", "https://play.google.com/store/apps/details?id=com.gamesters.gridora", "", "", ""),
     ("hwpg_1396", "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame", "2026-05-17", "2026-05-19", ""),
     ("hwpg_1398", "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang", "2026-05-20", "2026-05-21", ""),
-    ("hwpg_1399", "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001", "2026-05-25", "2026-05-26", ""),
+    # ("hwpg_1399", "https://play.google.com/store/apps/details?id=com.pandamajiang.panda001", "2026-05-25", "2026-05-26", ""),
 ]
 
 # ---------------------
