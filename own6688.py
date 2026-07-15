@@ -70,6 +70,9 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=club.wanmeisportsoccer",
     "https://play.google.com/store/apps/details?id=com.qfthsaka.lotteat",
     "https://play.google.com/store/apps/details?id=com.fspl.nova",
+    "https://play.google.com/store/apps/details?id=club.aill365sportsoccer.app",
+    "https://play.google.com/store/apps/details?id=com.aigoldshafootball.application",
+    "https://play.google.com/store/apps/details?id=ai.royalhorsesports.core",
    
 ]
 
