@@ -69,8 +69,8 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.ailleyusportsoccer.app",
     "https://play.google.com/store/apps/details?id=club.wanmeisportsoccer",
     "https://play.google.com/store/apps/details?id=com.qfthsaka.lotteat",
-    
-    
+    "https://play.google.com/store/apps/details?id=com.fspl.nova",
+   
 ]
 
 # 发送消息
