@@ -73,6 +73,8 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=club.aill365sportsoccer.app",
     "https://play.google.com/store/apps/details?id=com.aigoldshafootball.application",
     "https://play.google.com/store/apps/details?id=ai.royalhorsesports.core",
+    "https://play.google.com/store/apps/details?id=com.saltmarvelspvtltd.ultimatetictactoe&pli=1",
+
    
 ]
 
