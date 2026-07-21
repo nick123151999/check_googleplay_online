@@ -78,7 +78,7 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=io.classicslots777.main",
      "https://play.google.com/store/apps/details?id=xyz.huatihuisports.src",
      "https://play.google.com/store/apps/details?id=ai.xingkongsports.main",
-    "https://play.google.com/store/apps/details?id=club.aigamelove.main"
+    "https://play.google.com/store/apps/details?id=club.aigamelove.main",
     "https://play.google.com/store/apps/details?id=com.genwears.sitescale"
    
 ]
