@@ -32,7 +32,7 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.rabbitsgame.slotsgogo2026",
     "https://play.google.com/store/apps/details?id=com.tigeranddragon.doocosj2026",
     "https://play.google.com/store/apps/details?id=com.NimbusDash.hks",
-    "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel",
+    # "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel",
     # "https://play.google.com/store/apps/details?id=com.icefallrescue.app",
     # "https://play.google.com/store/apps/details?id=com.plinkogame.tigerplinko",
     "https://play.google.com/store/apps/details?id=com.foxgamec.foxgames2026",
@@ -80,6 +80,7 @@ APP_LIST = [
      "https://play.google.com/store/apps/details?id=ai.xingkongsports.main",
     "https://play.google.com/store/apps/details?id=club.aigamelove.main",
     "https://play.google.com/store/apps/details?id=com.genwears.sitescale"
+    "https://play.google.com/store/apps/details?id=com.sona.voltvibe"
    
 ]
 
