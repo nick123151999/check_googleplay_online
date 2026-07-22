@@ -80,7 +80,7 @@ APP_LIST = [
      "https://play.google.com/store/apps/details?id=ai.xingkongsports.main",
     "https://play.google.com/store/apps/details?id=club.aigamelove.main",
     "https://play.google.com/store/apps/details?id=com.genwears.sitescale",
-    "https://play.google.com/store/apps/details?id=com.sona.voltvibe"
+    "https://play.google.com/store/apps/details?id=com.sona.voltvibe",
    
 ]
 
