@@ -19,10 +19,6 @@ CHAT_IDS.extend(get_chat_ids("TG_CHAT_ID_OWN"))
 APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.game78.fishgoo",
     "https://play.google.com/store/apps/details?id=com.khalidy.fortunecatch",
-    # "https://play.google.com/store/apps/details?id=com.tigerplinko.plinkogame",
-    # "https://play.google.com/store/apps/details?id=com.majiang.luckymajiang",
-    # "https://play.google.com/store/apps/details?id=com.gamesters.gridora",
-    # "https://play.google.com/store/apps/details?id=com.todomaskj.toshhks2026",
     "https://play.google.com/store/apps/details?id=com.maxminder2.feedbackhub",
     "https://play.google.com/store/apps/details?id=com.maxminder1.helixflow",
     "https://play.google.com/store/apps/details?id=com.tigerfruite.match2",
@@ -30,15 +26,11 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.rabbitsgame.slotsgogo2026",
     "https://play.google.com/store/apps/details?id=com.tigeranddragon.doocosj2026",
     "https://play.google.com/store/apps/details?id=com.NimbusDash.hks",
-    # "https://play.google.com/store/apps/details?id=com.luckygame.spinwheel",
-    # "https://play.google.com/store/apps/details?id=com.icefallrescue.app",
-    # "https://play.google.com/store/apps/details?id=com.plinkogame.tigerplinko",
     "https://play.google.com/store/apps/details?id=com.foxgamec.foxgames2026",
     "https://play.google.com/store/apps/details?id=com.magicgames.rabbit",
     "https://play.google.com/store/apps/details?id=com.rabbitstory.discovery2026",
     "https://play.google.com/store/apps/details?id=com.pandagame.pandamatch3",
     "https://play.google.com/store/apps/details?id=com.majiangganme.majiang",
-    # "https://play.google.com/store/apps/details?id=com.pandagame.majiang002",
     "https://play.google.com/store/apps/details?id=com.pandangame.majiangtooo003",
     "https://play.google.com/store/apps/details?id=com.pandamajiang.majiang004",
     "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005",
@@ -46,9 +38,6 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=pak.al.nasir.bugzy.tap.hunting",
     "https://play.google.com/store/apps/details?id=com.nafay.drift",
     "https://play.google.com/store/apps/details?id=com.nafay.brain",
-    # "https://play.google.com/store/apps/details?id=com.cube.firstdream",
-    # "https://play.google.com/store/apps/details?id=com.playwe.gaip",
-    # "https://play.google.com/store/apps/details?id=com.stack.mansion",
     "https://play.google.com/store/apps/details?id=com.cgmvtwrfz.ncortwc2",
     "https://play.google.com/store/apps/details?id=com.tuhbas.ncnfu3",
     "https://play.google.com/store/apps/details?id=com.rljxmuxcjw.fpyxkfxf4",
@@ -79,6 +68,8 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=club.aigamelove.main",
     "https://play.google.com/store/apps/details?id=com.genwears.sitescale",
     "https://play.google.com/store/apps/details?id=com.sona.voltvibe",
+    "https://play.google.com/store/apps/details?id=com.czqpl.kryptos",
+    
    
 ]
 
