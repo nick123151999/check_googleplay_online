@@ -69,6 +69,8 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.genwears.sitescale",
     "https://play.google.com/store/apps/details?id=com.sona.voltvibe",
     "https://play.google.com/store/apps/details?id=com.czqpl.kryptos",
+    "https://play.google.com/store/apps/details?id=com.brain.amazingfrenzy1",
+    "https://play.google.com/store/apps/details?id=club.aiyinhesports.core",
     
    
 ]
