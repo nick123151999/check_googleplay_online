@@ -70,7 +70,7 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.brain.amazingfrenzy1",
     "https://play.google.com/store/apps/details?id=club.aiyinhesports.core",
     "https://play.google.com/store/apps/details?id=io.crimson777slot.main",
-    https://play.google.com/store/apps/details?id=xyz.neon777spinslot.main",
+    "https://play.google.com/store/apps/details?id=xyz.neon777spinslot.main",
     "https://play.google.com/store/apps/details?id=tm.jackpot777rushslot.main",
     
     
