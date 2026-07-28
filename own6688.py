@@ -35,10 +35,8 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.pandamajiang.majiang004",
     "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005",
     "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame006",
-    "https://play.google.com/store/apps/details?id=pak.al.nasir.bugzy.tap.hunting",
     "https://play.google.com/store/apps/details?id=com.nafay.drift",
     "https://play.google.com/store/apps/details?id=com.nafay.brain",
-    # "https://play.google.com/store/apps/details?id=com.cgmvtwrfz.ncortwc2",
     "https://play.google.com/store/apps/details?id=com.tuhbas.ncnfu3",
     "https://play.google.com/store/apps/details?id=com.rljxmuxcjw.fpyxkfxf4",
     "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20481",
@@ -71,6 +69,10 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.czqpl.kryptos",
     "https://play.google.com/store/apps/details?id=com.brain.amazingfrenzy1",
     "https://play.google.com/store/apps/details?id=club.aiyinhesports.core",
+    "https://play.google.com/store/apps/details?id=io.crimson777slot.main",
+    https://play.google.com/store/apps/details?id=xyz.neon777spinslot.main",
+    "https://play.google.com/store/apps/details?id=tm.jackpot777rushslot.main",
+    
     
 ]
 
