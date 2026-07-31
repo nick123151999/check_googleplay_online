@@ -50,7 +50,6 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.gttob.xmgjfjulu3",
     "https://play.google.com/store/apps/details?id=com.funnyjackfootball.app",
     "https://play.google.com/store/apps/details?id=vn.sadliersoccer.main",
-    "https://play.google.com/store/apps/details?id=xyz.swiftgoalsoccer.mobile",
     "https://play.google.com/store/apps/details?id=com.ailleyusportsoccer.app",
     "https://play.google.com/store/apps/details?id=club.wanmeisportsoccer",
     "https://play.google.com/store/apps/details?id=club.aill365sportsoccer.app",
