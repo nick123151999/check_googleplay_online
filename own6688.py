@@ -71,8 +71,6 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=tm.jackpot777rushslot.main",
     "https://play.google.com/store/apps/details?id=com.cube.happystory2",
     
-    
-    
 ]
 
 # 发送消息
