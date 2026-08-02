@@ -62,7 +62,6 @@ APP_LIST = [
      "https://play.google.com/store/apps/details?id=ai.xingkongsports.main",
     "https://play.google.com/store/apps/details?id=club.aigamelove.main",
     "https://play.google.com/store/apps/details?id=com.genwears.sitescale",
-    "https://play.google.com/store/apps/details?id=com.brain.amazingfrenzy1",
     "https://play.google.com/store/apps/details?id=club.aiyinhesports.core",
     "https://play.google.com/store/apps/details?id=io.crimson777slot.main",
     "https://play.google.com/store/apps/details?id=xyz.neon777spinslot.main",
