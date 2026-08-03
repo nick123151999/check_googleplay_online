@@ -56,7 +56,6 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.aigoldshafootball.application",
     "https://play.google.com/store/apps/details?id=ai.royalhorsesports.core",
     "https://play.google.com/store/apps/details?id=com.saltmarvelspvtltd.ultimatetictactoe&pli=1",
-    "https://play.google.com/store/apps/details?id=io.lucky777spin.main",
     "https://play.google.com/store/apps/details?id=io.classicslots777.main",
      "https://play.google.com/store/apps/details?id=xyz.huatihuisports.src",
      "https://play.google.com/store/apps/details?id=ai.xingkongsports.main",
