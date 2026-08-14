@@ -58,6 +58,8 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=xyz.neon777spinslot.main",
     "https://play.google.com/store/apps/details?id=tm.jackpot777rushslot.main",
     "https://play.google.com/store/apps/details?id=com.cube.happystory2",
+    "https://play.google.com/store/apps/details?id=com.anso.ancientslots",
+    
     
 ]
 
