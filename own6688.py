@@ -39,7 +39,6 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.tuhbas.ncnfu3",
     "https://play.google.com/store/apps/details?id=com.rljxmuxcjw.fpyxkfxf4",
     "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20481",
-    "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20482",
     "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20483",
     "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20484",
     "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20485",
