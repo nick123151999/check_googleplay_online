@@ -57,6 +57,7 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.anso.ancientslots",
     "https://play.google.com/store/apps/details?id=com.lssus.luckyslots",
     "https://play.google.com/store/apps/details?id=com.fortunerush.raviksolmaveth",
+    "https://play.google.com/store/apps/details?id=com.cutso.cuterebbit",
 
 ]
 
