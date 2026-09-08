@@ -59,9 +59,7 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.anso.ancientslots",
     "https://play.google.com/store/apps/details?id=com.lssus.luckyslots",
     "https://play.google.com/store/apps/details?id=com.fortunerush.raviksolmaveth",
-    
-    
-    
+
 ]
 
 # 发送消息
