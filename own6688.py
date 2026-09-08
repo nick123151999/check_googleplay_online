@@ -54,7 +54,6 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=club.aigamelove.main",
     "https://play.google.com/store/apps/details?id=com.genwears.sitescale",
     "https://play.google.com/store/apps/details?id=club.aiyinhesports.core",
-    "https://play.google.com/store/apps/details?id=xyz.neon777spinslot.main",
     "https://play.google.com/store/apps/details?id=tm.jackpot777rushslot.main",
     "https://play.google.com/store/apps/details?id=com.anso.ancientslots",
     "https://play.google.com/store/apps/details?id=com.lssus.luckyslots",
