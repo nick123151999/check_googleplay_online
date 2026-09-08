@@ -31,7 +31,6 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.pandagame.pandamatch3",
     "https://play.google.com/store/apps/details?id=com.majiangganme.majiang",
     "https://play.google.com/store/apps/details?id=com.pandangame.majiangtooo003",
-    "https://play.google.com/store/apps/details?id=com.pandamajiang.majiang004",
     "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame005",
     "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame006",
     "https://play.google.com/store/apps/details?id=com.nafay.drift",
