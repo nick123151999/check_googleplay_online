@@ -1,27 +1,27 @@
-name: 我的账户定时巡检
+name: TG定时广告推送
 on:
   push:
-  workflow_dispatch:
+  workflow_dispatch: # 支持手动点按钮运行测试
   schedule:
-    - cron: "0 */1 * * *"  # 每 1 小时执行一次
+    - cron: "0 */1 * * *" # UTC时区，每小时整点执行
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  run-task:
+  send-ad:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 3
     steps:
-      - name: Checkout
+      - name: 拉取代码
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: 配置Python3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Run Check
+      - name: 执行广告推送脚本
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         run: python kuniaoyun.py
