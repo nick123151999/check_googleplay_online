@@ -1,12 +1,9 @@
-name: TG定时广告推送
+name: TG个人账号定时推送广告
 on:
   push:
-  workflow_dispatch: # 支持手动点按钮运行测试
+  workflow_dispatch:
   schedule:
-    - cron: "0 */1 * * *" # UTC时区，每小时整点执行
-
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    - cron: "0 */4 * * *" # UTC时间，每4小时执行一次，降低封号风险
 
 jobs:
   send-ad:
@@ -21,7 +18,12 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: 执行广告推送脚本
+      - name: 安装依赖 Pyrogram
+        run: pip install pyrogram
+
+      - name: 执行发送脚本
         env:
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-        run: python kuniaoyun.py
+          TG_API_ID: ${{ secrets.TG_API_ID }}
+          TG_API_HASH: ${{ secrets.TG_API_HASH }}
+          TG_SESSION_STR: ${{ secrets.TG_SESSION_STR }}
+        run: python kuniaoyun_person.py
