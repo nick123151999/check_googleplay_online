@@ -1,0 +1,29 @@
+name: 我的账户定时巡检
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */2 * * *"  # 每 2 小时执行一次
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run Check
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID_OWN: ${{ secrets.TG_CHAT_ID_OWN }}
+          # TG_CHAT_ID_COMP2: ${{ secrets.TG_CHAT_ID_COMP2 }}
+        run: python own6688.py
