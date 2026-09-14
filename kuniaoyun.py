@@ -1,14 +1,12 @@
-
 import os
 import urllib.request
 import urllib.parse
 from datetime import datetime
 
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
-# 目标群组ID
+# 新群组ID
 TARGET_CHAT_ID = "-1001661572274"
 
-# TG发送消息函数
 def send_tg(msg):
     try:
         api = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
@@ -21,10 +19,8 @@ def send_tg(msg):
 
 if __name__ == "__main__":
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    # 广告语，你可以自行修改文字
     ad_content = f"""🔥谷歌上架渠道接单🔥
 可接谷歌上架业务，APP不限类型，稳定出包
 欢迎咨询，需要的直接私聊！
 发送时间：{now}"""
-
     send_tg(ad_content)
