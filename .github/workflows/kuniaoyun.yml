@@ -26,4 +26,4 @@ jobs:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID_OWN: ${{ secrets.TG_CHAT_ID_OWN }}
           # TG_CHAT_ID_COMP2: ${{ secrets.TG_CHAT_ID_COMP2 }}
-        run: python own6688.py
+        run: python kuniaoyun.py
