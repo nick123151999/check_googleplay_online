@@ -3,9 +3,8 @@ from datetime import datetime
 import os
 
 api_id = int(os.getenv("TG_API_ID"))
-api_hash = os.getenv("TG_API_HASH")
+api_hash = os.getenv("TG_API_HASH"))
 session_str = os.getenv("TG_SESSION_STR")
-# 目标TG群组ID
 target_chat_id = "-1001661572274"
 
 app = Client(
@@ -16,13 +15,16 @@ app = Client(
 )
 
 async def send_ad_message():
-    now_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    ad_text = f"""🔥谷歌上架渠道接单🔥
+    try:
+        now_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        ad_text = f"""🔥谷歌上架渠道接单🔥
 可接谷歌上架业务，APP不限类型，稳定出包
 欢迎咨询，需要的直接私聊！
 推送时间：{now_time}"""
-    async with app:
-        await app.send_message(target_chat_id, ad_text)
-    print("✅消息发送成功（个人TG账号）")
+        async with app:
+            await app.send_message(target_chat_id, ad_text)
+        print("✅消息发送成功")
+    except Exception as e:
+        print(f"❌发送失败，错误详情：{e}")
 
 app.run(send_ad_message())
