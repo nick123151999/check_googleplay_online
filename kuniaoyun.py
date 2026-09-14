@@ -1,32 +1,28 @@
-import os
-import urllib.request
-import urllib.parse
+from pyrogram import Client
 from datetime import datetime
+import os
 
-# 配置
-BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
-TARGET_CHAT_ID = "-1001661572274"
+api_id = int(os.getenv("TG_API_ID"))
+api_hash = os.getenv("TG_API_HASH")
+session_str = os.getenv("TG_SESSION_STR")
+# 目标TG群组ID
+target_chat_id = "-1001661572274"
 
-def send_telegram_message(text: str):
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    payload = urllib.parse.urlencode({
-        "chat_id": TARGET_CHAT_ID,
-        "text": text
-    }).encode("utf-8")
-    req = urllib.request.Request(url, data=payload, method="POST")
-    try:
-        with urllib.request.urlopen(req, timeout=10):
-            print("✅广告发送成功")
-    except Exception as err:
-        print(f"❌发送失败：{err}")
+app = Client(
+    ":memory:",
+    api_id=api_id,
+    api_hash=api_hash,
+    session_string=session_str
+)
 
-if __name__ == "__main__":
-    # 北京时间
-    bj_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    # =========在这里修改你的广告语=========
+async def send_ad_message():
+    now_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     ad_text = f"""🔥谷歌上架渠道接单🔥
 可接谷歌上架业务，APP不限类型，稳定出包
 欢迎咨询，需要的直接私聊！
-推送时间：{bj_time}"""
-    # =====================================
-    send_telegram_message(ad_text)
+推送时间：{now_time}"""
+    async with app:
+        await app.send_message(target_chat_id, ad_text)
+    print("✅消息发送成功（个人TG账号）")
+
+app.run(send_ad_message())
