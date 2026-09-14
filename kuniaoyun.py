@@ -6,7 +6,6 @@ api_id = int(os.getenv("TG_API_ID"))
 api_hash = os.getenv("TG_API_HASH")
 session_str = os.getenv("TG_SESSION_STR")
 target_chat_id = "-1001661572274"
-
 app = Client(
     ":memory:",
     api_id=api_id,
