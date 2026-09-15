@@ -35,7 +35,6 @@ APP_LIST = [
     "https://play.google.com/store/apps/details?id=com.pamdhh.majianggame006",
     "https://play.google.com/store/apps/details?id=com.nafay.drift",
     "https://play.google.com/store/apps/details?id=com.nafay.brain",
-    "https://play.google.com/store/apps/details?id=com.tuhbas.ncnfu3",
     "https://play.google.com/store/apps/details?id=com.rljxmuxcjw.fpyxkfxf4",
     "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20481",
     "https://play.google.com/store/apps/details?id=com.pandagame.rockpaper20483",
